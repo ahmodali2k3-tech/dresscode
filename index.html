@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DressCode — Your Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FDFCFA;
+    --charcoal: #1C1C1A;
+    --ink: #2E2E2B;
+    --muted: #7A7870;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #9A7A45;
+    --blush: #F0E6E0;
+    --sage: #E4EAE0;
+    --dusty: #E8E4EE;
+    --border: rgba(28,28,26,0.1);
+    --border-strong: rgba(28,28,26,0.2);
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,252,250,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600; letter-spacing: 0.12em;
+    color: var(--charcoal); text-transform: uppercase; text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
+    color: var(--muted); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+ 
+  /* ── HERO ── */
+  .hero {
+    margin-top: 64px;
+    min-height: 88vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 0 3rem; gap: 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -5%;
+    width: 55%; height: 140%;
+    background: var(--cream);
+    border-radius: 2% 0 0 2%;
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::after {
+    content: ''; display: inline-block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--charcoal); margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-dark); }
+  .hero p {
+    font-size: 16px; line-height: 1.8; color: var(--muted);
+    max-width: 420px; margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--charcoal); color: var(--cream);
+    padding: 14px 32px; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .hero-cta:hover { background: var(--ink); transform: translateY(-1px); }
+  .hero-cta svg { transition: transform 0.2s; }
+  .hero-cta:hover svg { transform: translateX(4px); }
+ 
+  .hero-images { position: relative; z-index: 1; height: 560px; }
+  .hero-img-stack { position: relative; width: 100%; height: 100%; }
+  .hero-img-stack img {
+    position: absolute;
+    object-fit: cover;
+    border-radius: 2px;
+    transition: transform 0.4s;
+  }
+  .hero-img-stack img:nth-child(1) {
+    width: 58%; height: 75%;
+    top: 0; right: 0;
+    box-shadow: -8px 16px 48px rgba(0,0,0,0.12);
+  }
+  .hero-img-stack img:nth-child(2) {
+    width: 46%; height: 55%;
+    bottom: 0; left: 0;
+    box-shadow: 8px 16px 48px rgba(0,0,0,0.1);
+  }
+  .hero-img-stack:hover img:nth-child(1) { transform: translateY(-4px) rotate(0.5deg); }
+  .hero-img-stack:hover img:nth-child(2) { transform: translateY(4px) rotate(-0.5deg); }
+  .hero-tag {
+    position: absolute; bottom: 60px; right: -12px;
+    background: var(--gold); color: var(--charcoal);
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 8px 16px; font-weight: 500;
+  }
+    
+    /* ── DAILY FIT ── */
+
+.daily-fit{
+  padding: 5rem 3rem;
+  background: linear-gradient(135deg, #faf7f2 0%, #fdfcfa 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.daily-fit-card{
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  border-radius: 6px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+}
+
+.weather-side{
+  border-right: 1px solid var(--border);
+  padding-right: 2rem;
+}
+
+.weather-top{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:2rem;
+}
+
+.weather-icon{
+  font-size:72px;
+}
+
+.weather-temp{
+  font-family: 'Cormorant Garamond', serif;
+  font-size:64px;
+  line-height:1;
+  color:var(--charcoal);
+}
+
+.weather-location{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:8px;
+}
+
+.weather-condition{
+  display:inline-block;
+  margin-top:1rem;
+  background:var(--cream);
+  padding:8px 14px;
+  border-radius:100px;
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+}
+
+.fit-side{}
+
+.fit-label{
+  font-size:11px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1rem;
+  font-weight:500;
+}
+
+.fit-title{
+  font-family: 'Cormorant Garamond', serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  line-height:1.1;
+  margin-bottom:1rem;
+  color:var(--charcoal);
+}
+
+.fit-desc{
+  color:var(--muted);
+  line-height:1.9;
+  max-width:700px;
+  margin-bottom:2rem;
+}
+
+.fit-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.fit-tag{
+  padding:10px 18px;
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-size:13px;
+}
+
+.fit-loading{
+  color:var(--muted);
+}
+
+@media(max-width:900px){
+
+  .daily-fit{
+    padding:3rem 1.5rem;
+  }
+
+  .daily-fit-card{
+    grid-template-columns:1fr;
+    padding:2rem;
+  }
+
+  .weather-side{
+    border-right:none;
+    border-bottom:1px solid var(--border);
+    padding-right:0;
+    padding-bottom:2rem;
+  }
+
+}
+    
+    
+ 
+  /* ── SECTION INTRO ── */
+  .section-intro {
+    text-align: center; padding: 5rem 3rem 3rem;
+  }
+  .section-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300; color: var(--charcoal);
+    line-height: 1.1; margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 15px; color: var(--muted); max-width: 540px; margin: 0 auto;
+    line-height: 1.8;
+  }
+ 
+  /* ── OCCASION TABS ── */
+  .occasion-tabs {
+    display: flex; justify-content: center; gap: 0;
+    padding: 2rem 3rem 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .tab-btn {
+    background: none; border: none;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn.active { color: var(--charcoal); border-bottom-color: var(--gold); }
+  .tab-btn:hover:not(.active) { color: var(--ink); }
+ 
+  /* ── OCCASION PANELS ── */
+  .occasion-panel { display: none; padding: 4rem 3rem; }
+  .occasion-panel.active { display: block; }
+ 
+  .panel-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+  .panel-grid.reverse { grid-template-columns: 1.2fr 1fr; }
+  .panel-grid.reverse .panel-images { order: -1; }
+ 
+  .panel-info {}
+  .panel-badge {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 5px 12px; margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .badge-party { background: var(--dusty); color: #5A4A8A; }
+  .badge-office { background: var(--sage); color: #3A5C3A; }
+  .badge-wedding { background: var(--blush); color: #8A4A5A; }
+  .badge-casual { background: var(--cream); color: #6A5A3A; border: 1px solid var(--gold-light); }
+  .badge-formal { background: var(--charcoal); color: var(--gold); }
+  .badge-date { background: #F8E8EC; color: #7A3A50; }
+ 
+  .panel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; line-height: 1.1; color: var(--charcoal);
+    margin-bottom: 1rem;
+  }
+  .panel-title em { font-style: italic; }
+  .panel-desc {
+    font-size: 15px; line-height: 1.85; color: var(--muted);
+    margin-bottom: 2rem;
+  }
+ 
+  .dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+  .do-block, .dont-block {
+    padding: 1.25rem;
+    border-radius: 2px;
+  }
+  .do-block { background: var(--sage); }
+  .dont-block { background: var(--blush); }
+  .do-block h4 {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #3A5C3A; font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .dont-block h4 {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #8A4A5A; font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .do-block ul, .dont-block ul {
+    list-style: none; font-size: 13px; line-height: 1.9;
+  }
+  .do-block li::before { content: '✓  '; color: #3A5C3A; font-weight: 500; }
+  .dont-block li::before { content: '✗  '; color: #8A4A5A; font-weight: 500; }
+ 
+  .essentials-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold-dark); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  .essentials-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 6px 14px;
+    border: 0.5px solid var(--border-strong);
+    font-size: 12px; color: var(--ink);
+    border-radius: 100px;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .chip:hover { background: var(--cream); border-color: var(--gold-light); }
+ 
+  /* ── PINTEREST IMAGES ── */
+  .panel-images {}
+  .pin-mosaic { display: grid; gap: 12px; }
+  .pin-mosaic-3 { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+  .pin-mosaic-3 .pin-card:first-child { grid-column: 1 / -1; }
+ 
+  .pin-card {
+    position: relative; overflow: hidden; border-radius: 4px;
+    cursor: pointer;
+    background: var(--cream);
+  }
+  .pin-card img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .pin-card:hover img { transform: scale(1.04); }
+  .pin-card .pin-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(28,28,26,0.55) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 1rem;
+  }
+  .pin-card:hover .pin-overlay { opacity: 1; }
+  .pin-overlay-text { color: white; font-size: 12px; letter-spacing: 0.06em; }
+  .pin-source {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 10px; color: var(--muted);
+    padding: 6px 10px;
+    background: white;
+    border-top: 0.5px solid var(--border);
+  }
+  .pin-source svg { width: 12px; height: 12px; color: #E60023; flex-shrink: 0; }
+ 
+  /* Tall images */
+  .pin-card.tall { height: 340px; }
+  .pin-card.medium { height: 220px; }
+  .pin-card.wide { height: 280px; }
+ 
+  /* ── STYLE TIPS STRIP ── */
+  .style-tips {
+    background: var(--charcoal);
+    padding: 4rem 3rem;
+    text-align: center;
+  }
+  .style-tips .section-eyebrow { color: var(--gold); }
+  .style-tips .section-title { color: var(--cream); }
+  .tips-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; margin-top: 3rem; text-align: left;
+  }
+  .tip-card { padding: 2rem; border: 0.5px solid rgba(255,255,255,0.1); }
+  .tip-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--gold);
+    opacity: 0.5; line-height: 1; margin-bottom: 0.5rem;
+  }
+  .tip-title {
+    font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+  .tip-desc { font-size: 14px; color: rgba(250,247,242,0.6); line-height: 1.8; }
+ 
+  /* ── COLOR PALETTE GUIDE ── */
+  .palette-section { padding: 5rem 3rem; background: var(--cream); }
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .palette-card { text-align: center; }
+  .color-swatch { height: 80px; border-radius: 4px; margin-bottom: 0.75rem; }
+  .palette-label { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
+  .palette-occasions { font-size: 11px; color: var(--muted); }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal); color: rgba(250,247,242,0.5);
+    text-align: center; padding: 2.5rem 3rem;
+    font-size: 12px; letter-spacing: 0.06em;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 300; letter-spacing: 0.15em;
+    color: var(--cream); text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+ 
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * { animation: fadeUp 0.7s ease both; }
+  .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-images { animation: fadeUp 0.9s ease 0.3s both; }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 2rem 1.5rem; min-height: auto; gap: 2rem; }
+    .hero::before { display: none; }
+    .hero-images { height: 360px; }
+    .panel-grid, .panel-grid.reverse { grid-template-columns: 1fr; gap: 2.5rem; }
+    .panel-grid.reverse .panel-images { order: 0; }
+    .occasion-panel { padding: 2rem 1.5rem; }
+    .section-intro { padding: 3rem 1.5rem 2rem; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .style-tips, .palette-section { padding: 3rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+    .occasion-tabs { padding: 1.5rem 1.5rem 0; justify-content: flex-start; }
+    .dos-donts { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Dress<span>Code</span></a>
+  <ul class="nav-links">
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#tips">Style Tips</a></li>
+    <li><a href="#palette">Colors</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Your Personal Style Guide</div>
+    <h1>Dress for<br>every <em>occasion</em><br>perfectly</h1>
+    <p>From boardroom power dressing to wedding elegance — curated looks and expert guidance so you always arrive dressed exactly right.</p>
+    <a class="hero-cta" href="#occasions" onclick="document.getElementById('occasions').scrollIntoView({behavior:'smooth'}); return false;">
+      Explore Looks
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-images">
+    <div class="hero-img-stack">
+      <img
+        src="https://i.pinimg.com/736x/b5/2e/3e/b52e3e2b1b6e8a4f4e5b8d1e3e7b0c1a.jpg"
+        onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80'"
+        alt="Fashion editorial look"
+        loading="eager"
+      >
+      <img
+        src="https://i.pinimg.com/736x/a1/2b/3c/a12b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.jpg"
+        onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80'"
+        alt="Elegant outfit"
+        loading="eager"
+      >
+      <div class="hero-tag">★ Pinterest Curated</div>
+    </div>
+  </div>
+</section>
+    
+    
+<!-- DAILY FIT -->
+
+<section class="daily-fit">
+
+  <div class="daily-fit-card">
+
+    <div class="weather-side">
+
+      <div class="weather-top">
+
+        <div class="weather-icon" id="weatherIcon">
+          ☀️
+        </div>
+
+        <div>
+
+          <div class="weather-temp" id="weatherTemp">
+            --
+          </div>
+
+          <div class="weather-location" id="weatherLocation">
+            Detecting location...
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="weather-condition" id="weatherCondition">
+        Loading weather...
+      </div>
+
+    </div>
+
+    <div class="fit-side">
+
+      <div class="fit-label">
+        Daily Fit Recommendation
+      </div>
+
+      <h2 class="fit-title" id="fitTitle">
+        Finding your perfect outfit...
+      </h2>
+
+      <p class="fit-desc" id="fitDesc">
+        Please wait while we analyze today's weather.
+      </p>
+
+      <div class="fit-tags" id="fitTags"></div>
+
+    </div>
+
+  </div>
+
+</section>    
+    
+ 
+<!-- OCCASIONS -->
+<div id="occasions">
+  <div class="section-intro">
+    <div class="section-eyebrow">Style by occasion</div>
+    <h2 class="section-title">What to wear, <em>when</em></h2>
+    <p class="section-sub">Select your occasion below for tailored outfit ideas, style rules, and curated inspiration boards.</p>
+  </div>
+ 
+  <div class="occasion-tabs">
+    <button class="tab-btn active" onclick="showPanel('party')">🎉 Party</button>
+    <button class="tab-btn" onclick="showPanel('office')">💼 Office</button>
+    <button class="tab-btn" onclick="showPanel('wedding')">💍 Wedding</button>
+    <button class="tab-btn" onclick="showPanel('casual')">☀️ Casual</button>
+    <button class="tab-btn" onclick="showPanel('formal')">🎭 Black Tie</button>
+    <button class="tab-btn" onclick="showPanel('date')">🌹 Date Night</button>
+  </div>
+ 
+  <!-- PARTY -->
+  <div class="occasion-panel active" id="panel-party">
+    <div class="panel-grid">
+      <div class="panel-info">
+        <div class="panel-badge badge-party">Party</div>
+        <h2 class="panel-title">Stand out,<br><em>shine bright</em></h2>
+        <p class="panel-desc">A party is your moment to express personality and have fun with fashion. Whether it's a cocktail soirée or a birthday bash, the key is confidence. Choose pieces that make you feel alive — sequins, bold prints, or a silhouette you love.</p>
+        <div class="dos-donts">
+          <div class="do-block">
+            <h4>✓ Do</h4>
+            <ul>
+              <li>Wear sequins or metallics</li>
+              <li>Try a bold colour block</li>
+              <li>Statement accessories</li>
+              <li>Heeled boots or strappy heels</li>
+              <li>A chic mini or midi dress</li>
+            </ul>
+          </div>
+          <div class="dont-block">
+            <h4>✗ Don't</h4>
+            <ul>
+              <li>Wear ripped casual jeans</li>
+              <li>Oversized hoodies</li>
+              <li>Flat sneakers (unless party theme)</li>
+              <li>All-black with no texture</li>
+              <li>Ignore the dress code</li>
+            </ul>
+          </div>
+        </div>
+        <div class="essentials-label">Party Essentials</div>
+        <div class="essentials-chips">
+          <span class="chip">Sequin Mini Dress</span>
+          <span class="chip">Satin Slip</span>
+          <span class="chip">Velvet Blazer</span>
+          <span class="chip">Strappy Heels</span>
+          <span class="chip">Clutch Bag</span>
+          <span class="chip">Statement Earrings</span>
+          <span class="chip">Metallic Top</span>
+        </div>
+      </div>
+      <div class="panel-images">
+        <div class="pin-mosaic pin-mosaic-3">
+          <div class="pin-card wide">
+            <img src="https://i.pinimg.com/736x/8a/3f/c2/8a3fc2b1e4d7a9f0c5e8b2d3f1a6e9c8.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1568252542512-9fe8fe9f6a56?w=600&q=80'"
+              alt="Party outfit sequin dress" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Sequin Cocktail Look</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/4c/7e/1a/4c7e1a2b3d4e5f6a7b8c9d0e1f2a3b4c.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1529139574466-a303027614b0?w=400&q=80'"
+              alt="Party style bold" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Bold Colour Block</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/9b/2d/5e/9b2d5e8f1a3c6e9b2d5e8f1a3c6e9b2d.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80'"
+              alt="Party accessories" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Metallic & Accessories</div></div>
+          </div>
+        </div>
+        <div class="pin-source">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pinterest inspiration boards
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- OFFICE -->
+  <div class="occasion-panel" id="panel-office">
+    <div class="panel-grid reverse">
+      <div class="panel-info">
+        <div class="panel-badge badge-office">Office</div>
+        <h2 class="panel-title">Power dressing,<br><em>refined</em></h2>
+        <p class="panel-desc">Your office attire speaks before you do. Dress with intention — tailored pieces, polished fabrics, and a composed colour palette communicate professionalism and command respect. Smart doesn't have to mean boring.</p>
+        <div class="dos-donts">
+          <div class="do-block">
+            <h4>✓ Do</h4>
+            <ul>
+              <li>Tailored blazers & trousers</li>
+              <li>Clean, polished footwear</li>
+              <li>Neutral & muted palettes</li>
+              <li>Well-fitted button-down shirts</li>
+              <li>Classic midi skirts</li>
+            </ul>
+          </div>
+          <div class="dont-block">
+            <h4>✗ Don't</h4>
+            <ul>
+              <li>Flip flops or beach sandals</li>
+              <li>Overly casual graphic tees</li>
+              <li>Overly revealing necklines</li>
+              <li>Loud novelty prints</li>
+              <li>Wrinkled or unironed clothes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="essentials-label">Office Essentials</div>
+        <div class="essentials-chips">
+          <span class="chip">Tailored Blazer</span>
+          <span class="chip">Silk Blouse</span>
+          <span class="chip">Ponte Trousers</span>
+          <span class="chip">Oxford Shoes</span>
+          <span class="chip">Structured Tote</span>
+          <span class="chip">Midi Pencil Skirt</span>
+          <span class="chip">Knit Twin Set</span>
+        </div>
+      </div>
+      <div class="panel-images">
+        <div class="pin-mosaic pin-mosaic-3">
+          <div class="pin-card wide">
+            <img src="https://i.pinimg.com/736x/c3/5a/8d/c35a8d2f1e4b7c0a9d3f6e2b5c8a1d4f.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80'"
+              alt="Office power look" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Power Suit Look</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/3e/9b/1d/3e9b1d4f7a2c5e8b1d4f7a2c5e8b1d4f.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1548142813-c348350df52b?w=400&q=80'"
+              alt="Office chic style" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Office Chic</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/7f/4a/2e/7f4a2e9c1b6d3a8f5c0e7b4a2e9c1b6d.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&q=80'"
+              alt="Smart office outfit" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Smart Coordinates</div></div>
+          </div>
+        </div>
+        <div class="pin-source">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pinterest inspiration boards
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- WEDDING -->
+  <div class="occasion-panel" id="panel-wedding">
+    <div class="panel-grid">
+      <div class="panel-info">
+        <div class="panel-badge badge-wedding">Wedding</div>
+        <h2 class="panel-title">Grace for the<br><em>grandest day</em></h2>
+        <p class="panel-desc">Attending a wedding as a guest is an art — you want to honour the occasion and celebrate the couple while looking your absolute best. Remember: the bride is the star. Dress elegantly without stealing the spotlight.</p>
+        <div class="dos-donts">
+          <div class="do-block">
+            <h4>✓ Do</h4>
+            <ul>
+              <li>Floral midi or maxi dresses</li>
+              <li>Elegant jumpsuits</li>
+              <li>Pastel or jewel tone palette</li>
+              <li>Fascinators or hair accessories</li>
+              <li>Block-heel or wedge shoes</li>
+            </ul>
+          </div>
+          <div class="dont-block">
+            <h4>✗ Don't</h4>
+            <ul>
+              <li>Wear white, cream, or ivory</li>
+              <li>Outshine the wedding party</li>
+              <li>Wear black alone (context matters)</li>
+              <li>Casual jeans or shorts</li>
+              <li>Overly revealing outfits</li>
+            </ul>
+          </div>
+        </div>
+        <div class="essentials-label">Wedding Guest Essentials</div>
+        <div class="essentials-chips">
+          <span class="chip">Floral Maxi</span>
+          <span class="chip">Pastel Suit</span>
+          <span class="chip">Silk Wrap Dress</span>
+          <span class="chip">Fascinator</span>
+          <span class="chip">Block Heel Sandals</span>
+          <span class="chip">Clutch</span>
+          <span class="chip">Pearl Jewellery</span>
+        </div>
+      </div>
+      <div class="panel-images">
+        <div class="pin-mosaic pin-mosaic-3">
+          <div class="pin-card wide">
+            <img src="https://i.pinimg.com/736x/2a/7c/5f/2a7c5f9e3b6d1a8c4e7f2a7c5f9e3b6d.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80'"
+              alt="Wedding guest outfit" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Floral Elegance</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/8e/1b/4d/8e1b4d7f2a5c9e3b6d1a8c4e7f2a5c9e.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80'"
+              alt="Wedding guest pastel" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Pastel Garden Look</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/6f/3a/9c/6f3a9c2e5b8d1a4f7c0e3b6d9a2c5e8f.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80'"
+              alt="Wedding guest accessories" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Accessory Details</div></div>
+          </div>
+        </div>
+        <div class="pin-source">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pinterest inspiration boards
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CASUAL -->
+  <div class="occasion-panel" id="panel-casual">
+    <div class="panel-grid reverse">
+      <div class="panel-info">
+        <div class="panel-badge badge-casual">Casual</div>
+        <h2 class="panel-title">Effortless,<br><em>everyday style</em></h2>
+        <p class="panel-desc">Casual doesn't mean careless. Elevated everyday dressing is about mixing comfort with intention — quality basics, well-chosen textures, and thoughtful layering that makes you look put-together without trying too hard.</p>
+        <div class="dos-donts">
+          <div class="do-block">
+            <h4>✓ Do</h4>
+            <ul>
+              <li>Quality denim & linen</li>
+              <li>Crisp white tee with tailored trousers</li>
+              <li>Layer with lightweight knits</li>
+              <li>Clean white sneakers</li>
+              <li>Minimal jewellery</li>
+            </ul>
+          </div>
+          <div class="dont-block">
+            <h4>✗ Don't</h4>
+            <ul>
+              <li>Wear pilled or faded clothing</li>
+              <li>Ill-fitting basics</li>
+              <li>Mix too many bold logos</li>
+              <li>Forget to iron/steam</li>
+              <li>Ignore shoe choice</li>
+            </ul>
+          </div>
+        </div>
+        <div class="essentials-label">Casual Wardrobe</div>
+        <div class="essentials-chips">
+          <span class="chip">Straight-leg Jeans</span>
+          <span class="chip">Linen Shirt</span>
+          <span class="chip">White Tee</span>
+          <span class="chip">Chino Shorts</span>
+          <span class="chip">Canvas Sneakers</span>
+          <span class="chip">Knit Cardigan</span>
+          <span class="chip">Tote Bag</span>
+        </div>
+      </div>
+      <div class="panel-images">
+        <div class="pin-mosaic pin-mosaic-3">
+          <div class="pin-card wide">
+            <img src="https://i.pinimg.com/736x/1d/4f/8a/1d4f8a3c6e9b2d5f8a1d4f8a3c6e9b2d.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80'"
+              alt="Casual everyday outfit" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Elevated Everyday</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/5c/8e/2a/5c8e2a6f9b3d7a1e5c8e2a6f9b3d7a1e.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&q=80'"
+              alt="Casual chic look" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Denim & Linen</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/9a/3c/7e/9a3c7e1b5d8f2a6c9a3c7e1b5d8f2a6c.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&q=80'"
+              alt="Minimalist casual" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Clean Minimalism</div></div>
+          </div>
+        </div>
+        <div class="pin-source">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pinterest inspiration boards
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- FORMAL / BLACK TIE -->
+  <div class="occasion-panel" id="panel-formal">
+    <div class="panel-grid">
+      <div class="panel-info">
+        <div class="panel-badge badge-formal">Black Tie</div>
+        <h2 class="panel-title">The art of<br><em>true elegance</em></h2>
+        <p class="panel-desc">Black tie is the pinnacle of dress codes — reserved for galas, operas, and formal ceremonies. This is your moment to embody timeless sophistication. Long gowns, classic tuxedo dressing, and impeccable grooming define this occasion.</p>
+        <div class="dos-donts">
+          <div class="do-block">
+            <h4>✓ Do</h4>
+            <ul>
+              <li>Floor-length gowns</li>
+              <li>Classic tuxedo or dinner suit</li>
+              <li>Fine jewellery & watches</li>
+              <li>Formal heels or patent shoes</li>
+              <li>Evening bags & gloves</li>
+            </ul>
+          </div>
+          <div class="dont-block">
+            <h4>✗ Don't</h4>
+            <ul>
+              <li>Anything shorter than knee-length</li>
+              <li>Casual shoes or boots</li>
+              <li>Overly trendy or novelty pieces</li>
+              <li>Jeans in any form</li>
+              <li>Costume jewellery</li>
+            </ul>
+          </div>
+        </div>
+        <div class="essentials-label">Black Tie Essentials</div>
+        <div class="essentials-chips">
+          <span class="chip">Floor-Length Gown</span>
+          <span class="chip">Evening Tuxedo</span>
+          <span class="chip">Satin Opera Gloves</span>
+          <span class="chip">Stiletto Heels</span>
+          <span class="chip">Diamond Studs</span>
+          <span class="chip">Minaudière</span>
+          <span class="chip">Silk Pocket Square</span>
+        </div>
+      </div>
+      <div class="panel-images">
+        <div class="pin-mosaic pin-mosaic-3">
+          <div class="pin-card wide">
+            <img src="https://i.pinimg.com/736x/4b/9d/2f/4b9d2f5e8a1c4f7b9d2f5e8a1c4f7b9d.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80'"
+              alt="Black tie gown" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Evening Gown Elegance</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/7e/1c/5a/7e1c5a9f2b4d8e1c5a9f2b4d8e1c5a9f.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80'"
+              alt="Formal tuxedo look" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Classic Tuxedo</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/2c/6e/9a/2c6e9a3f7b1d5e2c6e9a3f7b1d5e2c6e.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80'"
+              alt="Formal jewellery details" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Fine Jewellery</div></div>
+          </div>
+        </div>
+        <div class="pin-source">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pinterest inspiration boards
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- DATE NIGHT -->
+  <div class="occasion-panel" id="panel-date">
+    <div class="panel-grid reverse">
+      <div class="panel-info">
+        <div class="panel-badge badge-date">Date Night</div>
+        <h2 class="panel-title">Magnetic,<br><em>unforgettable</em></h2>
+        <p class="panel-desc">A date night outfit should feel like a second skin — comfortable enough to be present, beautiful enough to feel special. Strike the balance between effort and ease. The goal: look like the best version of yourself.</p>
+        <div class="dos-donts">
+          <div class="do-block">
+            <h4>✓ Do</h4>
+            <ul>
+              <li>Wear your favourite silhouette</li>
+              <li>Choose one statement piece</li>
+              <li>Soft, touchable fabrics</li>
+              <li>A great fragrance</li>
+              <li>Elevated basics done well</li>
+            </ul>
+          </div>
+          <div class="dont-block">
+            <h4>✗ Don't</h4>
+            <ul>
+              <li>Wear uncomfortable shoes</li>
+              <li>Over-accessorise</li>
+              <li>Wear brand-new unworn items</li>
+              <li>Dress unlike yourself</li>
+              <li>Over-match everything</li>
+            </ul>
+          </div>
+        </div>
+        <div class="essentials-label">Date Night Picks</div>
+        <div class="essentials-chips">
+          <span class="chip">Satin Slip Dress</span>
+          <span class="chip">Fitted Blazer Dress</span>
+          <span class="chip">Dark Jeans + Silk Top</span>
+          <span class="chip">Block Heels</span>
+          <span class="chip">Dainty Necklace</span>
+          <span class="chip">Small Shoulder Bag</span>
+          <span class="chip">Bold Lip</span>
+        </div>
+      </div>
+      <div class="panel-images">
+        <div class="pin-mosaic pin-mosaic-3">
+          <div class="pin-card wide">
+            <img src="https://i.pinimg.com/736x/3d/7f/1b/3d7f1b5e9a3c7f1b5e9a3c7f1b5e9a3c.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80'"
+              alt="Date night outfit" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Satin Evening Look</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/6b/0e/4c/6b0e4c8d2f5a9b3e7c1d6b0e4c8d2f5a.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80'"
+              alt="Date night chic" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Effortlessly Chic</div></div>
+          </div>
+          <div class="pin-card medium">
+            <img src="https://i.pinimg.com/736x/9f/2a/6d/9f2a6d1c4e8b2a6d1c4e8b2a6d1c4e8b.jpg"
+              onerror="this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=400&q=80'"
+              alt="Date night accessories" loading="lazy">
+            <div class="pin-overlay"><div class="pin-overlay-text">Details Matter</div></div>
+          </div>
+        </div>
+        <div class="pin-source">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Pinterest inspiration boards
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- STYLE TIPS -->
+<section id="tips" class="style-tips">
+  <div class="section-eyebrow">Universal Rules</div>
+  <h2 class="section-title" style="color: var(--cream);">The golden rules<br>of <em style="color:var(--gold)">dressing well</em></h2>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-num">01</div>
+      <div class="tip-title">Fit is everything</div>
+      <p class="tip-desc">The most expensive outfit looks cheap if it doesn't fit. Invest in a tailor — even basic pieces look elevated when they're fitted to your body.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">02</div>
+      <div class="tip-title">Dress the occasion</div>
+      <p class="tip-desc">Always consider the venue, the host, and the guests. Being overdressed shows respect; being underdressed shows you didn't care enough to try.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">03</div>
+      <div class="tip-title">Quality over quantity</div>
+      <p class="tip-desc">Three exceptional pieces outperform thirty mediocre ones. Build a capsule wardrobe of well-made basics and rotate intentionally.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">04</div>
+      <div class="tip-title">Shoes make the outfit</div>
+      <p class="tip-desc">Even the simplest look transforms with the right shoe. Pay attention — your choice of footwear signals your level of care more than any other piece.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">05</div>
+      <div class="tip-title">Colour harmony</div>
+      <p class="tip-desc">Limit your outfit to three colours maximum. A dominant, secondary, and accent. This formula creates effortless coordination without overthinking.</p>
+    </div>
+    <div class="tip-card">
+      <div class="tip-num">06</div>
+      <div class="tip-title">Confidence is the final accessory</div>
+      <p class="tip-desc">Wear every outfit with intent. Walk tall. The most stylish people aren't wearing the most expensive clothes — they're wearing whatever they choose with absolute conviction.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- COLOUR PALETTE GUIDE -->
+<section id="palette" class="palette-section">
+  <div class="section-intro" style="padding-top:0">
+    <div class="section-eyebrow">Colour guide</div>
+    <h2 class="section-title">Colours that <em>always</em> work</h2>
+    <p class="section-sub">A reliable colour vocabulary that flatters and adapts across every occasion.</p>
+  </div>
+  <div class="palette-grid">
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #1C1C1A;"></div>
+      <div class="palette-label">Charcoal Black</div>
+      <div class="palette-occasions">Office · Formal · Date</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #FAF7F2; border: 1px solid #E8E0D5;"></div>
+      <div class="palette-label">Ivory Cream</div>
+      <div class="palette-occasions">Wedding Guest · Casual</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #C9A96E;"></div>
+      <div class="palette-label">Warm Gold</div>
+      <div class="palette-occasions">Party · Wedding · Date</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #7B9E8A;"></div>
+      <div class="palette-label">Sage Green</div>
+      <div class="palette-occasions">Office · Casual · Wedding</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #8B7BA8;"></div>
+      <div class="palette-label">Dusty Lavender</div>
+      <div class="palette-occasions">Party · Wedding Guest</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #C4736A;"></div>
+      <div class="palette-label">Terracotta</div>
+      <div class="palette-occasions">Casual · Party · Date</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #2C4A6E;"></div>
+      <div class="palette-label">Navy Blue</div>
+      <div class="palette-occasions">Office · Formal · Casual</div>
+    </div>
+    <div class="palette-card">
+      <div class="color-swatch" style="background: #D4A5A5;"></div>
+      <div class="palette-label">Blush Rose</div>
+      <div class="palette-occasions">Wedding · Date · Casual</div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DressCode</div>
+  <p>Your curated fashion guide · Inspiration sourced from <a href="https://pinterest.com" target="_blank">Pinterest</a></p>
+  <p style="margin-top:0.5rem">Style is a way to say who you are without having to speak. — Rachel Zoe</p>
+</footer>
+ 
+<script>
+  function showPanel(id) {
+    document.querySelectorAll('.occasion-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+ 
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+ 
+  document.querySelectorAll('.tip-card, .palette-card, .pin-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+ 
+  // Stagger palette cards
+  document.querySelectorAll('.palette-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.05) + 's';
+  });
+  document.querySelectorAll('.tip-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+    
+    
+    
+    const WEATHER_API_KEY = "cc6d69ff7b79bfd2a711f5663575755a";
+
+async function getWeather(lat, lon){
+
+  try{
+
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`
+    );
+
+    const data = await response.json();
+
+    const temp = Math.round(data.main.temp);
+
+    const city = data.name;
+
+    const condition = data.weather[0].main.toLowerCase();
+
+    const humidity = data.main.humidity;
+
+    updateDailyFit(temp, condition, humidity, city);
+
+  }catch(error){
+
+    console.log(error);
+
+    document.getElementById("fitTitle").innerHTML =
+      "Unable to load weather.";
+
+  }
+
+}
+
+function updateDailyFit(temp, condition, humidity, city){
+
+  let fit = {};
+
+  if(condition.includes("rain")){
+
+    fit = {
+
+      icon: "🌧️",
+
+      title: "Rain Ready Minimalism",
+
+      desc:
+      "Today's weather calls for elevated waterproof layers and darker tones that stay chic even in rain.",
+
+      tags: [
+        "Waterproof Jacket",
+        "Dark Denim",
+        "Chelsea Boots",
+        "Crossbody Bag",
+        "Layered Basics"
+      ]
+
+    };
+
+  }
+
+  else if(temp >= 34){
+
+    fit = {
+
+      icon: "☀️",
+
+      title: "Hot Weather Essentials",
+
+      desc:
+      "Breathable fabrics and relaxed silhouettes are the key today. Prioritize comfort while staying polished.",
+
+      tags: [
+        "Linen Shirt",
+        "Relaxed Shorts",
+        "White Sneakers",
+        "Sunglasses",
+        "Canvas Tote"
+      ]
+
+    };
+
+  }
+
+  else if(temp >= 26){
+
+    fit = {
+
+      icon: "⛅",
+
+      title: "Balanced Summer Layers",
+
+      desc:
+      "Perfect weather for lightweight layering and effortless smart-casual dressing.",
+
+      tags: [
+        "Cotton Tee",
+        "Wide-leg Trousers",
+        "Minimal Watch",
+        "Overshirt",
+        "Loafers"
+      ]
+
+    };
+
+  }
+
+  else if(temp >= 18){
+
+    fit = {
+
+      icon: "🍂",
+
+      title: "Soft Transitional Style",
+
+      desc:
+      "This temperature works beautifully with knit textures and layered neutrals.",
+
+      tags: [
+        "Light Knitwear",
+        "Long Coat",
+        "Straight Jeans",
+        "Leather Boots",
+        "Neutral Palette"
+      ]
+
+    };
+
+  }
+
+  else{
+
+    fit = {
+
+      icon: "❄️",
+
+      title: "Cold Weather Layers",
+
+      desc:
+      "Build warmth with structured outerwear and elevated winter essentials.",
+
+      tags: [
+        "Wool Coat",
+        "Scarf",
+        "Heavy Boots",
+        "Thermal Layers",
+        "Beanie"
+      ]
+
+    };
+
+  }
+
+  document.getElementById("weatherIcon").innerHTML =
+    fit.icon;
+
+  document.getElementById("weatherTemp").innerHTML =
+    `${temp}°`;
+
+  document.getElementById("weatherLocation").innerHTML =
+    city;
+
+  document.getElementById("weatherCondition").innerHTML =
+    condition;
+
+  document.getElementById("fitTitle").innerHTML =
+    fit.title;
+
+  document.getElementById("fitDesc").innerHTML =
+    fit.desc;
+
+  document.getElementById("fitTags").innerHTML =
+    fit.tags.map(tag =>
+      `<div class="fit-tag">${tag}</div>`
+    ).join('');
+
+}
+
+function initDailyFit(){
+
+  if(navigator.geolocation){
+
+    navigator.geolocation.getCurrentPosition(
+
+      (position)=>{
+
+        const lat = position.coords.latitude;
+
+        const lon = position.coords.longitude;
+
+        getWeather(lat, lon);
+
+      },
+
+      ()=>{
+
+        document.getElementById("fitTitle").innerHTML =
+          "Location access denied.";
+
+      }
+
+    );
+
+  }
+
+}
+
+initDailyFit();
+    
+</script>
+</body>
+</html>
