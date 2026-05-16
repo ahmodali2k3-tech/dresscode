@@ -32,6 +32,110 @@
     color: var(--ink);
     overflow-x: hidden;
   }
+
+
+/* ── HEADER DRAWER MENU ── */
+
+.menu-toggle{
+  width:46px;
+  height:46px;
+  border:none;
+  background:var(--cream);
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.menu-toggle:hover{
+  background:var(--gold);
+}
+
+.menu-toggle:hover span{
+  background:white;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--charcoal);
+  transition:0.3s;
+}
+
+.occasion-drawer{
+  position:fixed;
+  top:0;
+  left:-340px;
+  width:320px;
+  height:100vh;
+  background:white;
+  z-index:9999;
+  padding:2rem;
+  transition:0.4s ease;
+  overflow-y:auto;
+  box-shadow:10px 0 40px rgba(0,0,0,0.1);
+}
+
+.occasion-drawer.active{
+  left:0;
+}
+
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:9998;
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s;
+}
+
+.drawer-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.drawer-close{
+  display:flex;
+  justify-content:flex-end;
+  margin-bottom:2rem;
+}
+
+.drawer-close button{
+  border:none;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--cream);
+  cursor:pointer;
+  font-size:20px;
+}
+
+.drawer-links{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.drawer-link{
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:var(--warm-white);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.drawer-link:hover{
+  background:var(--gold);
+  color:white;
+  transform:translateX(4px);
+}
+
  
   /* ── NAV ── */
   nav {
@@ -295,6 +399,13 @@
     border-bottom: 1px solid var(--border);
     overflow-x: auto;
   }
+
+
+/* HIDE OLD TABS */
+
+.occasion-tabs{
+  display:none;
+}
   .tab-btn {
     background: none; border: none;
     padding: 14px 28px;
@@ -503,12 +614,20 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Dress<span>Code</span></a>
-  <ul class="nav-links">
-    <li><a href="#occasions">Occasions</a></li>
-    <li><a href="#tips">Style Tips</a></li>
-    <li><a href="#palette">Colors</a></li>
-  </ul>
+  
+
+
+<button class="menu-toggle" onclick="openDrawer()">
+
+  <span></span>
+  <span></span>
+  <span></span>
+
+</button>
+
 </nav>
+
+  
  
 <!-- HERO -->
 <section class="hero">
@@ -597,23 +716,83 @@
 
 </section>    
     
+
+<!-- DRAWER OVERLAY -->
+
+<div
+  class="drawer-overlay"
+  id="drawerOverlay"
+  onclick="closeDrawer()"
+></div>
+
+<!-- OCCASION DRAWER -->
+
+<div class="occasion-drawer" id="occasionDrawer">
+
+  <div class="drawer-close">
+    <button onclick="closeDrawer()">✕</button>
+  </div>
+
+  <div class="drawer-links">
+
+    <div
+      class="drawer-link"
+      onclick="openOccasion('party')"
+    >
+      🎉 Party
+    </div>
+
+    <div
+      class="drawer-link"
+      onclick="openOccasion('office')"
+    >
+      💼 Office
+    </div>
+
+    <div
+      class="drawer-link"
+      onclick="openOccasion('wedding')"
+    >
+      💍 Wedding
+    </div>
+
+    <div
+      class="drawer-link"
+      onclick="openOccasion('casual')"
+    >
+      ☀️ Casual
+    </div>
+
+    <div
+      class="drawer-link"
+      onclick="openOccasion('formal')"
+    >
+      🎭 Black Tie
+    </div>
+
+    <div
+      class="drawer-link"
+      onclick="openOccasion('date')"
+    >
+      🌹 Date Night
+    </div>
+
+  </div>
+
+</div>
+
  
 <!-- OCCASIONS -->
-<div id="occasions">
+<div id="occasions" style="display:none;">
   <div class="section-intro">
     <div class="section-eyebrow">Style by occasion</div>
     <h2 class="section-title">What to wear, <em>when</em></h2>
     <p class="section-sub">Select your occasion below for tailored outfit ideas, style rules, and curated inspiration boards.</p>
   </div>
  
-  <div class="occasion-tabs">
-    <button class="tab-btn active" onclick="showPanel('party')">🎉 Party</button>
-    <button class="tab-btn" onclick="showPanel('office')">💼 Office</button>
-    <button class="tab-btn" onclick="showPanel('wedding')">💍 Wedding</button>
-    <button class="tab-btn" onclick="showPanel('casual')">☀️ Casual</button>
-    <button class="tab-btn" onclick="showPanel('formal')">🎭 Black Tie</button>
-    <button class="tab-btn" onclick="showPanel('date')">🌹 Date Night</button>
-  </div>
+  <!-- DRAWER TOPBAR -->
+
+
  
   <!-- PARTY -->
   <div class="occasion-panel active" id="panel-party">
@@ -676,10 +855,7 @@
             <div class="pin-overlay"><div class="pin-overlay-text">Metallic & Accessories</div></div>
           </div>
         </div>
-        <div class="pin-source">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-          Pinterest inspiration boards
-        </div>
+        
       </div>
     </div>
   </div>
@@ -1364,6 +1540,88 @@ function searchPinterest(tag){
 
   const query =
     encodeURIComponent(tag + " pinterest");
+
+  const url =
+    `https://www.google.com/search?q=${query}`;
+
+  window.open(url, "_blank");
+
+}
+
+
+function openDrawer(){
+
+  const drawer =
+    document.getElementById("occasionDrawer");
+
+  const overlay =
+    document.getElementById("drawerOverlay");
+
+  drawer.classList.add("active");
+
+  overlay.classList.add("active");
+
+}
+
+function closeDrawer(){
+
+  const drawer =
+    document.getElementById("occasionDrawer");
+
+  const overlay =
+    document.getElementById("drawerOverlay");
+
+  drawer.classList.remove("active");
+
+  overlay.classList.remove("active");
+
+}
+
+function openOccasion(panel){
+
+  // SHOW OCCASIONS SECTION
+
+  document
+    .getElementById("occasions")
+    .style.display = "block";
+
+  // HIDE ALL PANELS
+
+  document
+    .querySelectorAll(".occasion-panel")
+    .forEach(el => {
+      el.classList.remove("active");
+    });
+
+  // SHOW SELECTED PANEL
+
+  const selectedPanel =
+    document.getElementById("panel-" + panel);
+
+  if(selectedPanel){
+
+    selectedPanel.classList.add("active");
+
+  }
+
+  // CLOSE DRAWER
+
+  closeDrawer();
+
+  // SCROLL
+
+  document
+    .getElementById("occasions")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+function searchPinterest(item){
+
+  const query =
+    encodeURIComponent(item + " pinterest");
 
   const url =
     `https://www.google.com/search?q=${query}`;
