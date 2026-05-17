@@ -565,7 +565,7 @@
  
   /* ── FOOTER ── */
   footer {
-    background: var(--charcoal); color: rgba(250,247,242,0.5);
+    background: var(--charcoal); color: rgba(254, 254, 254, 0.5);
     text-align: center; padding: 2.5rem 3rem;
     font-size: 12px; letter-spacing: 0.06em;
     border-top: 1px solid rgba(255,255,255,0.05);
@@ -777,6 +777,20 @@
       🌹 Date Night
     </div>
 
+    <div
+    class="drawer-link"
+    onclick="openTips()"
+    >
+      💡 Style Tips
+    </div>
+
+    <div
+      class="drawer-link"
+      onclick="openPalette()"
+    >
+      🎨 Colour Palette
+    </div>
+
   </div>
 
 </div>
@@ -825,26 +839,61 @@
         </div>
         <div class="essentials-label">Party Essentials</div>
         <div class="essentials-chips">
-          <span class="chip">Sequin Mini Dress</span>
-          <span class="chip">Satin Slip</span>
-          <span class="chip">Velvet Blazer</span>
-          <span class="chip">Strappy Heels</span>
-          <span class="chip">Clutch Bag</span>
-          <span class="chip">Statement Earrings</span>
-          <span class="chip">Metallic Top</span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Sequin Mini Dress')"
+          >
+            Sequin Mini Dress
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Satin Slip')"
+          >
+            Satin Slip
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Velvet Blazer')"
+          >
+            Velvet Blazer
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Strappy Heels')"
+          >
+            Strappy Heels
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Clutch Bag')"
+          >
+            Clutch Bag
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Statement Earrings')"
+          >
+            Statement Earrings
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Metallic Top')"
+          >
+            Metallic Top
+          </span>
         </div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
           <div class="pin-card wide">
             <img src="https://i.pinimg.com/736x/8a/3f/c2/8a3fc2b1e4d7a9f0c5e8b2d3f1a6e9c8.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1568252542512-9fe8fe9f6a56?w=600&q=80'"
+              onerror="this.src='https://i.pinimg.com/736x/22/88/b2/2288b20587bc97a577ceb495cfd19090.jpg'"
               alt="Party outfit sequin dress" loading="lazy">
             <div class="pin-overlay"><div class="pin-overlay-text">Sequin Cocktail Look</div></div>
           </div>
           <div class="pin-card medium">
             <img src="https://i.pinimg.com/736x/4c/7e/1a/4c7e1a2b3d4e5f6a7b8c9d0e1f2a3b4c.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1529139574466-a303027614b0?w=400&q=80'"
+              onerror="this.src='https://i.pinimg.com/736x/c7/cb/e0/c7cbe02a047eb695ab5bb65e6a208c79.jpg'"
               alt="Party style bold" loading="lazy">
             <div class="pin-overlay"><div class="pin-overlay-text">Bold Colour Block</div></div>
           </div>
@@ -891,13 +940,48 @@
         </div>
         <div class="essentials-label">Office Essentials</div>
         <div class="essentials-chips">
-          <span class="chip">Tailored Blazer</span>
-          <span class="chip">Silk Blouse</span>
-          <span class="chip">Ponte Trousers</span>
-          <span class="chip">Oxford Shoes</span>
-          <span class="chip">Structured Tote</span>
-          <span class="chip">Midi Pencil Skirt</span>
-          <span class="chip">Knit Twin Set</span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Tailored Blazer')"
+          >
+            Tailored Blazer
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Silk Blouse')"
+          >
+            Silk Blouse
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Ponte Trousers')"
+          >
+            Ponte Trousers
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Oxford Shoes')"
+          >
+            Oxford Shoes
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Structured Tote')"
+          >
+            Structured Tote
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Midi Pencil Skirt')"
+          >
+            Midi Pencil Skirt
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Knit Twin Set')"
+          >
+            Knit Twin Set
+          </span>
         </div>
       </div>
       <div class="panel-images">
@@ -957,13 +1041,48 @@
         </div>
         <div class="essentials-label">Wedding Guest Essentials</div>
         <div class="essentials-chips">
-          <span class="chip">Floral Maxi</span>
-          <span class="chip">Pastel Suit</span>
-          <span class="chip">Silk Wrap Dress</span>
-          <span class="chip">Fascinator</span>
-          <span class="chip">Block Heel Sandals</span>
-          <span class="chip">Clutch</span>
-          <span class="chip">Pearl Jewellery</span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Floral Maxi Dress')"
+          >
+            Floral Maxi
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Pastel Suit')"
+          >
+            Pastel Suit
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Silk Wrap Dress')"
+          >
+            Silk Wrap Dress
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Fascinator')"
+          >
+            Fascinator
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Block Heel Sandals')"
+          >
+            Block Heel Sandals
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Clutch')"
+          >
+            Clutch
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Pearl Jewellery')"
+          >
+            Pearl Jewellery
+          </span>
         </div>
       </div>
       <div class="panel-images">
@@ -1023,13 +1142,48 @@
         </div>
         <div class="essentials-label">Casual Wardrobe</div>
         <div class="essentials-chips">
-          <span class="chip">Straight-leg Jeans</span>
-          <span class="chip">Linen Shirt</span>
-          <span class="chip">White Tee</span>
-          <span class="chip">Chino Shorts</span>
-          <span class="chip">Canvas Sneakers</span>
-          <span class="chip">Knit Cardigan</span>
-          <span class="chip">Tote Bag</span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Straight-leg Jeans')"
+          >
+            Straight-leg Jeans
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Linen Shirt')"
+          >
+            Linen Shirt
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('White Tee')"
+          >
+            White Tee
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Chino Shorts')"
+          >
+            Chino Shorts
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Canvas Sneakers')"
+          >
+            Canvas Sneakers
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Knit Cardigan')"
+          >
+            Knit Cardigan
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Tote Bag')"
+          >
+            Tote Bag
+          </span>
         </div>
       </div>
       <div class="panel-images">
@@ -1089,13 +1243,48 @@
         </div>
         <div class="essentials-label">Black Tie Essentials</div>
         <div class="essentials-chips">
-          <span class="chip">Floor-Length Gown</span>
-          <span class="chip">Evening Tuxedo</span>
-          <span class="chip">Satin Opera Gloves</span>
-          <span class="chip">Stiletto Heels</span>
-          <span class="chip">Diamond Studs</span>
-          <span class="chip">Minaudière</span>
-          <span class="chip">Silk Pocket Square</span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Floor-Length Gown')"
+          >
+            Floor-Length Gown
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Evening Tuxedo')"
+          >
+            Evening Tuxedo
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Satin Opera Gloves')"
+          >
+            Satin Opera Gloves
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Stiletto Heels')"
+          >
+            Stiletto Heels
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Diamond Studs')"
+          >
+            Diamond Studs
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Minaudière')"
+          >
+            Minaudière
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Silk Pocket Square')"
+          >
+            Silk Pocket Square
+          </span>
         </div>
       </div>
       <div class="panel-images">
@@ -1155,13 +1344,48 @@
         </div>
         <div class="essentials-label">Date Night Picks</div>
         <div class="essentials-chips">
-          <span class="chip">Satin Slip Dress</span>
-          <span class="chip">Fitted Blazer Dress</span>
-          <span class="chip">Dark Jeans + Silk Top</span>
-          <span class="chip">Block Heels</span>
-          <span class="chip">Dainty Necklace</span>
-          <span class="chip">Small Shoulder Bag</span>
-          <span class="chip">Bold Lip</span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Satin Slip Dress')"
+          >
+            Satin Slip Dress
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Fitted Blazer Dress')"
+          >
+            Fitted Blazer Dress
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Dark Jeans + Silk Top')"
+          >
+            Dark Jeans + Silk Top
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Block Heels')"
+          >
+            Block Heels
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Dainty Necklace')"
+          >
+            Dainty Necklace
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Small Shoulder Bag')"
+          >
+            Small Shoulder Bag
+          </span>
+          <span
+            class="chip"
+            onclick="searchGoogle('Bold Lip')"
+          >
+            Bold Lip
+          </span>
         </div>
       </div>
       <div class="panel-images">
@@ -1192,7 +1416,11 @@
 </div>
  
 <!-- STYLE TIPS -->
-<section id="tips" class="style-tips">
+<section
+  id="tips"
+  class="style-tips"
+  style="display:none;"
+>
   <div class="section-eyebrow">Universal Rules</div>
   <h2 class="section-title" style="color: var(--cream);">The golden rules<br>of <em style="color:var(--gold)">dressing well</em></h2>
   <div class="tips-grid">
@@ -1230,7 +1458,11 @@
 </section>
  
 <!-- COLOUR PALETTE GUIDE -->
-<section id="palette" class="palette-section">
+<section
+  id="palette"
+  class="palette-section"
+  style="display:none;"
+>
   <div class="section-intro" style="padding-top:0">
     <div class="section-eyebrow">Colour guide</div>
     <h2 class="section-title">Colours that <em>always</em> work</h2>
@@ -1322,224 +1554,464 @@
     
     
     
-    const WEATHER_API_KEY = "cc6d69ff7b79bfd2a711f5663575755a";
 
-async function getWeather(lat, lon){
+/* ─── WEATHER SYSTEM ─── */
 
-  try{
+const WD={
 
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${WEATHER_API_KEY}`
-    );
+hot:{
+cond:'Hot & Sunny',
 
-    const data = await response.json();
+advice:
+'Light breathable fabrics essential — linen, cotton & silk. UV protection: looser silhouettes and lighter colours.',
 
-    const temp = Math.round(data.main.temp);
+tags:[
+'Breathable',
+'Light Colour',
+'SPF Ready'
+],
 
-    const city = data.name;
+icon:'☀️',
 
-    const condition = data.weather[0].main.toLowerCase();
+title:'Summer Essentials'
 
-    const humidity = data.main.humidity;
+},
 
-    updateDailyFit(temp, condition, humidity, city);
+warm:{
 
-  }catch(error){
+cond:'Warm & Bright',
 
-    console.log(error);
+advice:
+'Perfect layering weather with soft fabrics.',
 
-    document.getElementById("fitTitle").innerHTML =
-      "Unable to load weather.";
+tags:[
+'Layer Ready',
+'Transitional',
+'Versatile'
+],
 
-  }
+icon:'🌤️',
 
-}
+title:'Balanced Layers'
 
-function updateDailyFit(temp, condition, humidity, city){
+},
 
-  let fit = {};
+mild:{
 
-  if(condition.includes("rain")){
+cond:'Cool & Mild',
 
-    fit = {
+advice:
+'Knitwear season with elegant layers.',
 
-      icon: "🌧️",
+tags:[
+'Knit',
+'Autumn',
+'Layering'
+],
 
-      title: "Rain Ready Minimalism",
+icon:'🍂',
 
-      desc:
-      "Today's weather calls for elevated waterproof layers and darker tones that stay chic even in rain.",
+title:'Soft Transitional Style'
 
-      tags: [
-        "Waterproof Jacket",
-        "Dark Denim",
-        "Chelsea Boots",
-        "Crossbody Bag",
-        "Layered Basics"
-      ]
+},
 
-    };
+cold:{
 
-  }
+cond:'Cold & Crisp',
 
-  else if(temp >= 34){
+advice:
+'Thermal layers and wool coats recommended.',
 
-    fit = {
+tags:[
+'Thermal',
+'Heavy Layer',
+'Winter'
 
-      icon: "☀️",
+],
 
-      title: "Hot Weather Essentials",
+icon:'❄️',
 
-      desc:
-      "Breathable fabrics and relaxed silhouettes are the key today. Prioritize comfort while staying polished.",
+title:'Winter Chic'
 
-      tags: [
-        "Linen Shirt",
-        "Relaxed Shorts",
-        "White Sneakers",
-        "Sunglasses",
-        "Canvas Tote"
-      ]
+},
 
-    };
+rainy:{
 
-  }
+cond:'Rainy & Grey',
 
-  else if(temp >= 26){
+advice:
+'Trench coats and waterproof layers work best.',
 
-    fit = {
+tags:[
+'Waterproof',
+'Rain Ready',
+'Trench'
 
-      icon: "⛅",
+],
 
-      title: "Balanced Summer Layers",
+icon:'🌧️',
 
-      desc:
-      "Perfect weather for lightweight layering and effortless smart-casual dressing.",
-
-      tags: [
-        "Cotton Tee",
-        "Wide-leg Trousers",
-        "Minimal Watch",
-        "Overshirt",
-        "Loafers"
-      ]
-
-    };
-
-  }
-
-  else if(temp >= 18){
-
-    fit = {
-
-      icon: "🍂",
-
-      title: "Soft Transitional Style",
-
-      desc:
-      "This temperature works beautifully with knit textures and layered neutrals.",
-
-      tags: [
-        "Light Knitwear",
-        "Long Coat",
-        "Straight Jeans",
-        "Leather Boots",
-        "Neutral Palette"
-      ]
-
-    };
-
-  }
-
-  else{
-
-    fit = {
-
-      icon: "❄️",
-
-      title: "Cold Weather Layers",
-
-      desc:
-      "Build warmth with structured outerwear and elevated winter essentials.",
-
-      tags: [
-        "Wool Coat",
-        "Scarf",
-        "Heavy Boots",
-        "Thermal Layers",
-        "Beanie"
-      ]
-
-    };
-
-  }
-
-  document.getElementById("weatherIcon").innerHTML =
-    fit.icon;
-
-  document.getElementById("weatherTemp").innerHTML =
-    `${temp}°`;
-
-  document.getElementById("weatherLocation").innerHTML =
-    city;
-
-  document.getElementById("weatherCondition").innerHTML =
-    condition;
-
-  document.getElementById("fitTitle").innerHTML =
-    fit.title;
-
-  document.getElementById("fitDesc").innerHTML =
-    fit.desc;
-
-  document.getElementById("fitTags").innerHTML =
-  fit.tags.map(tag =>
-    `
-    <div
-      class="fit-tag"
-      onclick="searchPinterest('${tag}')"
-    >
-      ${tag}
-    </div>
-    `
-  ).join('');
+title:'Rain Ready Fashion'
 
 }
+
+};
+
+
 
 function initDailyFit(){
 
-  if(navigator.geolocation){
+document.getElementById(
+"weatherTemp"
+).innerHTML="...";
 
-    navigator.geolocation.getCurrentPosition(
+document.getElementById(
+"weatherCondition"
+).innerHTML=
+"Detecting weather...";
 
-      (position)=>{
+document.getElementById(
+"fitDesc"
+).innerHTML=
+"Fetching weather data...";
 
-        const lat = position.coords.latitude;
+if(
+!navigator.geolocation
+){
 
-        const lon = position.coords.longitude;
+simulateWeather();
 
-        getWeather(lat, lon);
+return;
 
-      },
+}
 
-      ()=>{
+navigator.geolocation.getCurrentPosition(
 
-        document.getElementById("fitTitle").innerHTML =
-          "Location access denied.";
+(position)=>{
 
-      }
+fetchWeather(
 
-    );
+position.coords.latitude,
 
-  }
+position.coords.longitude
+
+);
+
+},
+
+()=>{
+
+simulateWeather();
+
+},
+
+{
+
+timeout:6000
+
+}
+
+);
 
 }
 
 
-function searchPinterest(tag){
+
+function fetchWeather(
+
+lat,
+
+lon
+
+){
+
+fetch(
+
+`https://wttr.in/${lat},${lon}?format=j1`
+
+)
+
+.then(
+
+r=>r.json()
+
+)
+
+.then(
+
+d=>{
+
+const temp=
+
+parseInt(
+
+d.current_condition[0].temp_C
+
+);
+
+const desc=
+
+d.current_condition[0]
+
+.weatherDesc[0]
+
+.value;
+
+const area=
+
+d.nearest_area[0]
+
+.areaName[0]
+
+.value;
+
+const rain=
+
+desc
+
+.toLowerCase()
+
+.includes("rain")
+
+||
+
+desc
+
+.toLowerCase()
+
+.includes("drizzle");
+
+const w=
+
+rain
+
+?
+
+WD.rainy
+
+:
+
+temp>=30
+
+?
+
+WD.hot
+
+:
+
+temp>=20
+
+?
+
+WD.warm
+
+:
+
+temp>=12
+
+?
+
+WD.mild
+
+:
+
+WD.cold;
+
+renderWeather(
+
+temp,
+
+desc,
+
+area,
+
+w
+
+);
+
+}
+
+)
+
+.catch(
+
+()=>{
+
+simulateWeather();
+
+}
+
+);
+
+}
+
+
+
+function simulateWeather(){
+
+const keys=
+
+Object.keys(WD);
+
+const w=
+
+WD[
+
+keys[
+
+Math.floor(
+
+Math.random()
+
+*
+
+keys.length
+
+)
+
+]
+
+];
+
+renderWeather(
+
+24,
+
+w.cond,
+
+"Your City",
+
+w
+
+);
+
+}
+
+
+
+function renderWeather(
+
+temp,
+
+cond,
+
+loc,
+
+w
+
+){
+
+document.getElementById(
+
+"weatherIcon"
+
+).innerHTML=
+
+w.icon;
+
+
+
+document.getElementById(
+
+"weatherTemp"
+
+).innerHTML=
+
+temp+"°C";
+
+
+
+document.getElementById(
+
+"weatherLocation"
+
+).innerHTML=
+
+loc;
+
+
+
+document.getElementById(
+
+"weatherCondition"
+
+).innerHTML=
+
+cond;
+
+
+
+document.getElementById(
+
+"fitTitle"
+
+).innerHTML=
+
+w.title;
+
+
+
+document.getElementById(
+
+"fitDesc"
+
+).innerHTML=
+
+w.advice;
+
+
+
+document.getElementById(
+
+"fitTags"
+
+).innerHTML=
+
+w.tags.map(
+
+t=>`
+
+<div
+
+class="fit-tag"
+
+onclick="searchGoogle('${t}')"
+
+>
+
+${t}
+
+</div>
+
+`
+
+).join("");
+
+}
+
+
+
+function searchGoogle(item){
+
+window.open(
+
+`https://www.google.com/search?q=${encodeURIComponent(item)}`,
+
+"_blank"
+
+);
+
+}
+
+
+
+initDailyFit();
+
+
+function searchGoogle(item){
 
   const query =
-    encodeURIComponent(tag + " pinterest");
+    encodeURIComponent(item);
 
   const url =
     `https://www.google.com/search?q=${query}`;
@@ -1581,9 +2053,11 @@ function openOccasion(panel){
 
   // SHOW OCCASIONS SECTION
 
-  document
-    .getElementById("occasions")
-    .style.display = "block";
+  hideAllSections();
+
+document
+  .getElementById("occasions")
+  .style.display = "block";
 
   // HIDE ALL PANELS
 
@@ -1618,15 +2092,67 @@ function openOccasion(panel){
 
 }
 
-function searchPinterest(item){
+function searchGoogle(item){
 
   const query =
-    encodeURIComponent(item + " pinterest");
+    encodeURIComponent(item);
 
   const url =
     `https://www.google.com/search?q=${query}`;
 
   window.open(url, "_blank");
+
+}
+
+function hideAllSections(){
+
+  document.getElementById(
+    "occasions"
+  ).style.display = "none";
+
+  document.getElementById(
+    "tips"
+  ).style.display = "none";
+
+  document.getElementById(
+    "palette"
+  ).style.display = "none";
+
+}
+
+function openTips(){
+
+  hideAllSections();
+
+  document.getElementById(
+    "tips"
+  ).style.display = "block";
+
+  closeDrawer();
+
+  document.getElementById(
+    "tips"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+function openPalette(){
+
+  hideAllSections();
+
+  document.getElementById(
+    "palette"
+  ).style.display = "block";
+
+  closeDrawer();
+
+  document.getElementById(
+    "palette"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
 
 }
 
