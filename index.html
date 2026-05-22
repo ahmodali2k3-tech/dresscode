@@ -6,1660 +6,952 @@
 <title>DressCode — Your Style Guide</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
- 
-  :root {
-    --cream: #FAF7F2;
-    --warm-white: #FDFCFA;
-    --charcoal: #1C1C1A;
-    --ink: #2E2E2B;
-    --muted: #7A7870;
-    --gold: #C9A96E;
-    --gold-light: #E8D5B0;
-    --gold-dark: #9A7A45;
-    --blush: #F0E6E0;
-    --sage: #E4EAE0;
-    --dusty: #E8E4EE;
-    --border: rgba(28,28,26,0.1);
-    --border-strong: rgba(28,28,26,0.2);
-  }
- 
-  html { scroll-behavior: smooth; }
- 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--ink);
-    overflow-x: hidden;
-  }
-
-
-/* ── HEADER DRAWER MENU ── */
-
-.menu-toggle{
-  width:46px;
-  height:46px;
-  border:none;
-  background:var(--cream);
-  border-radius:12px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:5px;
-  cursor:pointer;
-  transition:0.3s;
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream:#FAF7F2; --warm-white:#FDFCFA; --charcoal:#1C1C1A; --ink:#2E2E2B;
+  --muted:#7A7870; --gold:#C9A96E; --gold-light:#E8D5B0; --gold-dark:#9A7A45;
+  --blush:#F0E6E0; --sage:#E4EAE0; --dusty:#E8E4EE;
+  --border:rgba(28,28,26,0.1); --border-strong:rgba(28,28,26,0.2);
+  --pin-red:#E60023;
 }
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--warm-white); color:var(--ink); overflow-x:hidden; }
 
-.menu-toggle:hover{
-  background:var(--gold);
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:400;
+  background:rgba(253,252,250,0.96); backdrop-filter:blur(14px);
+  border-bottom:0.5px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 2.5rem; height:64px;
 }
+.nav-logo { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; letter-spacing:0.12em; color:var(--charcoal); text-transform:uppercase; text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-right { display:flex; align-items:center; gap:12px; }
+.nav-streak { display:flex; align-items:center; gap:6px; background:rgba(201,169,110,0.12); border:1px solid rgba(201,169,110,0.3); padding:6px 14px; border-radius:100px; font-size:12px; font-weight:600; color:var(--gold-dark); cursor:pointer; transition:0.2s; }
+.nav-streak:hover { background:rgba(201,169,110,0.22); }
+.menu-toggle { width:46px; height:46px; border:none; background:var(--cream); border-radius:12px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; cursor:pointer; transition:0.3s; }
+.menu-toggle:hover { background:var(--gold); }
+.menu-toggle:hover span { background:white; }
+.menu-toggle span { width:20px; height:2px; background:var(--charcoal); transition:0.3s; display:block; }
 
-.menu-toggle:hover span{
-  background:white;
-}
+/* DRAWER OVERLAY */
+.drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:9998; opacity:0; visibility:hidden; transition:0.3s; }
+.drawer-overlay.active { opacity:1; visibility:visible; }
 
-.menu-toggle span{
-  width:20px;
-  height:2px;
-  background:var(--charcoal);
-  transition:0.3s;
-}
+/* DRAWER */
+.occasion-drawer { position:fixed; top:0; left:-360px; width:330px; height:100vh; background:white; z-index:9999; padding:0; transition:left 0.4s cubic-bezier(0.25,0.46,0.45,0.94); overflow-y:auto; box-shadow:10px 0 60px rgba(0,0,0,0.13); }
+.occasion-drawer.active { left:0; }
+.drawer-top { padding:1.5rem 1.5rem 1.25rem; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.drawer-logo { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; letter-spacing:0.12em; color:var(--charcoal); text-transform:uppercase; }
+.drawer-logo span { color:var(--gold); }
+.drawer-close-btn { border:none; width:36px; height:36px; border-radius:50%; background:var(--cream); cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; transition:0.2s; }
+.drawer-close-btn:hover { background:var(--gold); color:white; }
+.drawer-body { padding:1.25rem 1.5rem; }
+.drawer-streak-box { background:var(--charcoal); border-radius:10px; padding:1.25rem; margin-bottom:1.5rem; text-align:center; }
+.drawer-streak-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:700; line-height:1; color:var(--gold); }
+.drawer-streak-label { font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:4px; }
+.drawer-checkin-btn { margin-top:12px; width:100%; padding:10px; background:var(--gold); color:var(--charcoal); border:none; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:0.2s; }
+.drawer-checkin-btn:hover { background:var(--gold-dark); color:white; }
+.drawer-checkin-btn:disabled { opacity:0.5; cursor:default; }
+.drawer-section-lbl { font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:0.625rem; margin-top:1.25rem; padding-left:2px; }
+.drawer-links { display:flex; flex-direction:column; gap:6px; }
+.drawer-link { padding:13px 16px; border-radius:10px; border:1px solid var(--border); background:var(--warm-white); cursor:pointer; transition:0.25s; font-size:14px; font-weight:500; display:flex; align-items:center; gap:12px; color:var(--ink); user-select:none; }
+.drawer-link:hover { background:var(--gold); color:white; transform:translateX(4px); border-color:var(--gold); }
+.drawer-link.active-link { background:var(--charcoal); color:var(--gold); border-color:var(--charcoal); }
 
-.occasion-drawer{
-  position:fixed;
-  top:0;
-  left:-340px;
-  width:320px;
-  height:100vh;
-  background:white;
-  z-index:9999;
-  padding:2rem;
-  transition:0.4s ease;
-  overflow-y:auto;
-  box-shadow:10px 0 40px rgba(0,0,0,0.1);
-}
+/* HERO */
+.hero { margin-top:64px; min-height:88vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:0 3rem; gap:4rem; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-20%; right:-5%; width:55%; height:140%; background:var(--cream); border-radius:2% 0 0 2%; z-index:0; }
+.hero-text { position:relative; z-index:1; }
+.hero-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.75rem; }
+.hero-eyebrow::after { content:''; display:inline-block; width:32px; height:1px; background:var(--gold); }
+.hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,6vw,5.5rem); font-weight:300; line-height:1.05; color:var(--charcoal); margin-bottom:1.5rem; }
+.hero h1 em { font-style:italic; color:var(--gold-dark); }
+.hero p { font-size:16px; line-height:1.8; color:var(--muted); max-width:420px; margin-bottom:2.5rem; }
+.hero-cta { display:inline-flex; align-items:center; gap:0.75rem; background:var(--charcoal); color:var(--cream); padding:14px 32px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase; border:none; cursor:pointer; transition:background 0.2s,transform 0.2s; }
+.hero-cta:hover { background:var(--ink); transform:translateY(-1px); }
+.hero-cta svg { transition:transform 0.2s; }
+.hero-cta:hover svg { transform:translateX(4px); }
+.hero-images { position:relative; z-index:1; height:560px; }
+.hero-img-stack { position:relative; width:100%; height:100%; }
+.hero-img-stack img { position:absolute; object-fit:cover; border-radius:2px; transition:transform 0.4s; }
+.hero-img-stack img:nth-child(1) { width:58%; height:75%; top:0; right:0; box-shadow:-8px 16px 48px rgba(0,0,0,0.12); }
+.hero-img-stack img:nth-child(2) { width:46%; height:55%; bottom:0; left:0; box-shadow:8px 16px 48px rgba(0,0,0,0.1); }
+.hero-img-stack:hover img:nth-child(1) { transform:translateY(-4px) rotate(0.5deg); }
+.hero-img-stack:hover img:nth-child(2) { transform:translateY(4px) rotate(-0.5deg); }
+.hero-tag { position:absolute; bottom:60px; right:-12px; background:var(--gold); color:var(--charcoal); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; padding:8px 16px; font-weight:500; }
 
-.occasion-drawer.active{
-  left:0;
-}
+/* DAILY FIT */
+.daily-fit { padding:5rem 3rem; background:linear-gradient(135deg,#faf7f2 0%,#fdfcfa 100%); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.daily-fit-card { max-width:1200px; margin:auto; background:white; border-radius:6px; padding:3rem; display:grid; grid-template-columns:300px 1fr; gap:3rem; box-shadow:0 10px 40px rgba(0,0,0,0.06); }
+.weather-side { border-right:1px solid var(--border); padding-right:2rem; }
+.weather-top { display:flex; align-items:center; gap:16px; margin-bottom:2rem; }
+.weather-icon { font-size:72px; }
+.weather-temp { font-family:'Cormorant Garamond',serif; font-size:64px; line-height:1; color:var(--charcoal); }
+.weather-location { color:var(--muted); font-size:14px; margin-top:8px; }
+.weather-condition { display:inline-block; margin-top:1rem; background:var(--cream); padding:8px 14px; border-radius:100px; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; }
+.fit-label { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; font-weight:500; }
+.fit-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.2rem); line-height:1.1; margin-bottom:1rem; color:var(--charcoal); }
+.fit-desc { color:var(--muted); line-height:1.9; max-width:700px; margin-bottom:2rem; }
+.fit-tags { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:1.5rem; }
+.fit-tag { padding:10px 18px; background:var(--cream); border:1px solid var(--border); border-radius:100px; font-size:13px; cursor:pointer; transition:0.3s; }
+.fit-tag:hover { background:var(--gold); color:white; transform:translateY(-2px); }
+.fit-outfits { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.fit-outfit-card { border:1px solid var(--border); border-radius:8px; padding:1rem; text-align:center; cursor:pointer; transition:0.25s; background:var(--warm-white); }
+.fit-outfit-card:hover { border-color:var(--gold); transform:translateY(-2px); background:#FDF8F0; }
+.fit-outfit-card.selected { border-color:var(--gold); background:#FDF8F0; }
+.fit-outfit-emoji { font-size:28px; margin-bottom:6px; }
+.fit-outfit-name { font-size:12px; font-weight:700; margin-bottom:4px; color:var(--charcoal); }
+.fit-outfit-items { font-size:10px; color:var(--muted); line-height:1.6; }
 
-.drawer-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.45);
-  z-index:9998;
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-}
+/* SECTIONS (hidden by default, shown on demand) */
+.feature-section { display:none; }
+.feature-section.visible { display:block; }
 
-.drawer-overlay.active{
-  opacity:1;
-  visibility:visible;
-}
+/* OCCASIONS */
+.section-intro { text-align:center; padding:5rem 3rem 3rem; }
+.section-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:300; color:var(--charcoal); line-height:1.1; margin-bottom:1rem; }
+.section-sub { font-size:15px; color:var(--muted); max-width:540px; margin:0 auto; line-height:1.8; }
+.occasion-panel { display:none; padding:4rem 3rem; }
+.occasion-panel.active { display:block; }
+.panel-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:5rem; align-items:start; }
+.panel-grid.reverse { grid-template-columns:1.2fr 1fr; }
+.panel-grid.reverse .panel-images { order:-1; }
+.panel-badge { display:inline-block; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; padding:5px 12px; margin-bottom:1.5rem; font-weight:500; }
+.badge-party { background:var(--dusty); color:#5A4A8A; }
+.badge-office { background:var(--sage); color:#3A5C3A; }
+.badge-wedding { background:var(--blush); color:#8A4A5A; }
+.badge-casual { background:var(--cream); color:#6A5A3A; border:1px solid var(--gold-light); }
+.badge-formal { background:var(--charcoal); color:var(--gold); }
+.badge-date { background:#F8E8EC; color:#7A3A50; }
+.panel-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:300; line-height:1.1; color:var(--charcoal); margin-bottom:1rem; }
+.panel-title em { font-style:italic; }
+.panel-desc { font-size:15px; line-height:1.85; color:var(--muted); margin-bottom:2rem; }
+.dos-donts { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem; }
+.do-block,.dont-block { padding:1.25rem; border-radius:2px; }
+.do-block { background:var(--sage); }
+.dont-block { background:var(--blush); }
+.do-block h4 { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#3A5C3A; font-weight:500; margin-bottom:0.75rem; }
+.dont-block h4 { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#8A4A5A; font-weight:500; margin-bottom:0.75rem; }
+.do-block ul,.dont-block ul { list-style:none; font-size:13px; line-height:1.9; }
+.do-block li::before { content:'✓  '; color:#3A5C3A; font-weight:500; }
+.dont-block li::before { content:'✗  '; color:#8A4A5A; font-weight:500; }
+.essentials-label { font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-dark); font-weight:500; margin-bottom:0.75rem; }
+.essentials-chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:1.5rem; }
+.chip { padding:8px 16px; border:0.5px solid var(--border-strong); font-size:12px; color:var(--ink); border-radius:100px; transition:0.2s; cursor:pointer; }
+.chip:hover { background:var(--gold); color:white; border-color:var(--gold); transform:translateY(-1px); }
 
-.drawer-close{
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:2rem;
-}
+/* PINTEREST BUTTON */
+.view-board-btn { display:inline-flex; align-items:center; gap:10px; background:var(--pin-red); color:white; padding:12px 22px; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.06em; border-radius:4px; transition:0.2s; margin-top:0.5rem; }
+.view-board-btn:hover { background:#c0001e; transform:translateY(-2px); }
+.view-board-btn svg { width:16px; height:16px; fill:white; flex-shrink:0; }
+.pin-setup-bar { background:#FFF8F0; border:1px solid var(--gold-light); border-radius:6px; padding:1rem 1.25rem; display:none; align-items:center; gap:10px; flex-wrap:wrap; margin-top:1rem; }
+.pin-setup-bar.open { display:flex; }
+.pin-input { flex:1; min-width:220px; padding:8px 12px; border:1px solid var(--gold-light); border-radius:4px; font-family:'DM Sans',sans-serif; font-size:12px; color:var(--ink); outline:none; }
+.pin-input:focus { border-color:var(--gold); }
+.pin-apply-btn { padding:8px 18px; background:var(--charcoal); color:var(--cream); border:none; cursor:pointer; border-radius:4px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; }
+.pin-embed-area { margin-top:1.25rem; display:none; }
+.pin-embed-area.active { display:block; }
+.pin-url-pill { display:inline-flex; align-items:center; gap:6px; background:var(--warm-white); border:1px solid var(--border); padding:4px 12px; border-radius:100px; font-size:10px; color:var(--muted); margin-bottom:1rem; }
+.pin-url-pill button { background:none; border:none; cursor:pointer; font-size:10px; color:var(--gold-dark); font-family:'DM Sans',sans-serif; text-decoration:underline; }
 
-.drawer-close button{
-  border:none;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:var(--cream);
-  cursor:pointer;
-  font-size:20px;
-}
+/* PIN MOSAIC */
+.pin-mosaic { display:grid; gap:12px; }
+.pin-mosaic-3 { grid-template-columns:1fr 1fr; }
+.pin-mosaic-3 .pin-card:first-child { grid-column:1/-1; }
+.pin-card { position:relative; overflow:hidden; border-radius:4px; cursor:pointer; background:var(--cream); }
+.pin-card img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s cubic-bezier(.25,.46,.45,.94); }
+.pin-card:hover img { transform:scale(1.04); }
+.pin-card .pin-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(28,28,26,.55) 0%,transparent 50%); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; padding:1rem; }
+.pin-card:hover .pin-overlay { opacity:1; }
+.pin-overlay-text { color:white; font-size:12px; letter-spacing:0.06em; }
+.pin-source { display:flex; align-items:center; gap:6px; font-size:10px; color:var(--muted); padding:6px 10px; background:white; border-top:0.5px solid var(--border); }
+.pin-card.wide { height:280px; }
+.pin-card.medium { height:220px; }
 
-.drawer-links{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
+/* POLL */
+.poll-section { padding:5rem 3rem; background:var(--charcoal); }
+.poll-inner { max-width:900px; margin:auto; }
+.poll-eyebrow { font-size:10px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; display:flex; align-items:center; gap:10px; }
+.live-dot { width:7px; height:7px; border-radius:50%; background:var(--pin-red); animation:pulsedot 1.5s ease-in-out infinite; }
+@keyframes pulsedot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+.poll-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.75rem,3.5vw,2.75rem); font-weight:300; color:white; margin-bottom:2.5rem; line-height:1.2; }
+.poll-versus { display:grid; grid-template-columns:1fr 60px 1fr; align-items:center; margin-bottom:1.5rem; }
+.poll-option { border:1.5px solid rgba(255,255,255,0.1); border-radius:8px; overflow:hidden; cursor:pointer; transition:0.2s; background:rgba(255,255,255,0.04); }
+.poll-option:hover:not(.voted) { border-color:var(--gold); transform:scale(1.01); }
+.poll-option.voted-this { border-color:var(--gold); }
+.poll-option.voted-other { opacity:.5; }
+.poll-img { width:100%; height:180px; display:flex; align-items:center; justify-content:center; font-size:56px; background:rgba(255,255,255,0.04); }
+.poll-label { padding:.875rem; font-size:13px; font-weight:600; text-align:center; color:white; border-top:1px solid rgba(255,255,255,0.08); }
+.vs-circle { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:rgba(255,255,255,0.45); margin:0 auto; }
+.poll-result-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.poll-result-label { font-size:12px; font-weight:600; color:rgba(255,255,255,0.6); min-width:90px; }
+.poll-bar-bg { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.poll-bar-fill { height:100%; background:var(--gold); border-radius:3px; transition:width .7s cubic-bezier(.25,.46,.45,.94); }
+.poll-pct { font-size:12px; font-weight:700; color:var(--gold); min-width:36px; text-align:right; }
+.poll-total { font-size:11px; color:rgba(255,255,255,0.3); margin-top:6px; }
+.poll-voted-msg { font-size:13px; color:var(--gold); font-weight:600; text-align:center; margin-top:10px; }
 
-.drawer-link{
-  padding:16px 18px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:var(--warm-white);
-  cursor:pointer;
-  transition:0.3s;
-}
+/* RANDOMIZER */
+.randomizer-section { padding:5rem 3rem; background:var(--warm-white); border-top:1px solid var(--border); }
+.randomizer-inner { max-width:1000px; margin:auto; }
+.randomizer-board { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin:2rem 0; }
+.rand-slot { background:var(--cream); border:1px solid var(--border); border-radius:8px; padding:1rem .5rem; text-align:center; position:relative; min-height:110px; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:border-color .2s; }
+.rand-slot.locked { border-color:var(--gold); background:#FDF8F0; }
+.rand-emoji { font-size:28px; margin-bottom:5px; }
+.rand-cat { font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.rand-item { font-size:11px; font-weight:600; color:var(--ink); line-height:1.3; }
+.lock-btn { position:absolute; top:6px; right:6px; background:none; border:none; cursor:pointer; font-size:13px; opacity:.35; transition:opacity .2s; }
+.lock-btn:hover,.rand-slot.locked .lock-btn { opacity:1; }
+.rand-controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.season-sel { padding:10px 14px; border:1px solid var(--border); background:white; font-family:'DM Sans',sans-serif; font-size:12px; border-radius:4px; color:var(--ink); outline:none; cursor:pointer; }
+.harmony-chip { font-size:10px; font-weight:700; color:#3A6B4A; background:#E5EFE8; padding:4px 12px; border-radius:100px; opacity:0; transition:opacity .3s; }
+.harmony-chip.show { opacity:1; }
+.saved-outfits-wrap { margin-top:2rem; }
+.saved-outfit-row { display:flex; align-items:center; gap:12px; padding:.75rem 0; border-bottom:1px solid var(--border); }
+.saved-outfit-row:last-child { border-bottom:none; }
 
-.drawer-link:hover{
-  background:var(--gold);
-  color:white;
-  transform:translateX(4px);
-}
+/* CALENDAR */
+.calendar-section { padding:5rem 3rem; background:var(--cream); border-top:1px solid var(--border); }
+.calendar-inner { max-width:900px; margin:auto; }
+.cal-progress-wrap { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; }
+.progress-ring-wrap { position:relative; width:64px; height:64px; flex-shrink:0; }
+.progress-ring-wrap svg { transform:rotate(-90deg); }
+.prog-track { fill:none; stroke:var(--border-strong); stroke-width:5; }
+.prog-fill { fill:none; stroke:var(--gold); stroke-width:5; stroke-linecap:round; stroke-dasharray:163; stroke-dashoffset:163; transition:stroke-dashoffset .8s cubic-bezier(.25,.46,.45,.94); }
+.prog-pct { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--charcoal); }
+.cal-week-label { font-size:9px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); padding:.625rem 0 .25rem; border-bottom:1px solid var(--border); margin-bottom:.25rem; }
+.cal-task { display:flex; align-items:flex-start; gap:10px; padding:.625rem .5rem; border-bottom:1px solid var(--border); cursor:pointer; transition:background .15s; border-radius:4px; }
+.cal-task:last-child { border-bottom:none; }
+.cal-task:hover { background:rgba(201,169,110,0.08); }
+.cal-check { width:20px; height:20px; border-radius:50%; border:1.5px solid var(--muted); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; transition:.2s; }
+.cal-task.done .cal-check { background:var(--gold); border-color:var(--gold); }
+.cal-check-mark { font-size:11px; color:white; display:none; }
+.cal-task.done .cal-check-mark { display:block; }
+.cal-day-num { font-size:10px; color:var(--muted); min-width:32px; flex-shrink:0; margin-top:2px; font-weight:600; }
+.cal-task-text { font-size:13px; line-height:1.4; }
+.cal-task.done .cal-task-text { text-decoration:line-through; color:var(--muted); }
 
- 
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(253,252,250,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 64px;
-  }
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 600; letter-spacing: 0.12em;
-    color: var(--charcoal); text-transform: uppercase; text-decoration: none;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-size: 13px; font-weight: 400; letter-spacing: 0.06em;
-    color: var(--muted); text-decoration: none; text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--charcoal); }
- 
-  /* ── HERO ── */
-  .hero {
-    margin-top: 64px;
-    min-height: 88vh;
-    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
-    padding: 0 3rem; gap: 4rem;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: -20%; right: -5%;
-    width: 55%; height: 140%;
-    background: var(--cream);
-    border-radius: 2% 0 0 2%;
-    z-index: 0;
-  }
-  .hero-text { position: relative; z-index: 1; }
-  .hero-eyebrow {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.5rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .hero-eyebrow::after {
-    content: ''; display: inline-block; width: 32px; height: 1px;
-    background: var(--gold);
-  }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 300; line-height: 1.05;
-    color: var(--charcoal); margin-bottom: 1.5rem;
-  }
-  .hero h1 em { font-style: italic; color: var(--gold-dark); }
-  .hero p {
-    font-size: 16px; line-height: 1.8; color: var(--muted);
-    max-width: 420px; margin-bottom: 2.5rem;
-  }
-  .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.75rem;
-    background: var(--charcoal); color: var(--cream);
-    padding: 14px 32px; font-size: 13px; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    transition: background 0.2s, transform 0.2s;
-    cursor: pointer;
-  }
-  .hero-cta:hover { background: var(--ink); transform: translateY(-1px); }
-  .hero-cta svg { transition: transform 0.2s; }
-  .hero-cta:hover svg { transform: translateX(4px); }
- 
-  .hero-images { position: relative; z-index: 1; height: 560px; }
-  .hero-img-stack { position: relative; width: 100%; height: 100%; }
-  .hero-img-stack img {
-    position: absolute;
-    object-fit: cover;
-    border-radius: 2px;
-    transition: transform 0.4s;
-  }
-  .hero-img-stack img:nth-child(1) {
-    width: 58%; height: 75%;
-    top: 0; right: 0;
-    box-shadow: -8px 16px 48px rgba(0,0,0,0.12);
-  }
-  .hero-img-stack img:nth-child(2) {
-    width: 46%; height: 55%;
-    bottom: 0; left: 0;
-    box-shadow: 8px 16px 48px rgba(0,0,0,0.1);
-  }
-  .hero-img-stack:hover img:nth-child(1) { transform: translateY(-4px) rotate(0.5deg); }
-  .hero-img-stack:hover img:nth-child(2) { transform: translateY(4px) rotate(-0.5deg); }
-  .hero-tag {
-    position: absolute; bottom: 60px; right: -12px;
-    background: var(--gold); color: var(--charcoal);
-    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 8px 16px; font-weight: 500;
-  }
-    
-    /* ── DAILY FIT ── */
+/* STREAK */
+.streak-section { padding:5rem 3rem; background:var(--charcoal); }
+.streak-inner { max-width:1000px; margin:auto; }
+.streak-big-num { font-family:'Cormorant Garamond',serif; font-size:96px; font-weight:700; line-height:1; color:var(--gold); }
+.streak-big-label { font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:4px; }
+.streak-week { display:flex; gap:8px; justify-content:center; margin:1.5rem 0; }
+.streak-day { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; text-transform:uppercase; border:1.5px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.25); }
+.streak-day.done { background:var(--gold); border-color:var(--gold); color:var(--charcoal); }
+.streak-day.today { border-color:var(--gold); color:var(--gold); }
+.badges-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+.badge-item { border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:1rem .5rem; text-align:center; background:rgba(255,255,255,0.04); }
+.badge-item.earned { border-color:var(--gold); background:rgba(201,169,110,0.1); }
+.badge-item.locked { opacity:.3; }
+.badge-emoji { font-size:24px; margin-bottom:6px; }
+.badge-name { font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,0.45); }
+.badge-item.earned .badge-name { color:var(--gold); }
+.badge-days { font-size:9px; color:rgba(255,255,255,0.25); margin-top:2px; }
 
-.daily-fit{
-  padding: 5rem 3rem;
-  background: linear-gradient(135deg, #faf7f2 0%, #fdfcfa 100%);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
+/* WEEK SCHEDULE */
+.schedule-section { padding:5rem 3rem; background:var(--warm-white); border-top:1px solid var(--border); }
+.schedule-inner { max-width:1100px; margin:auto; }
+.week-strip { display:grid; grid-template-columns:repeat(7,1fr); border:1px solid var(--border); border-radius:6px; overflow:hidden; margin-bottom:1.5rem; }
+.week-day { padding:1rem .5rem; text-align:center; border-right:1px solid var(--border); cursor:pointer; transition:background .15s; background:white; }
+.week-day:last-child { border-right:none; }
+.week-day:hover { background:var(--warm-white); }
+.week-day.today { background:var(--cream); }
+.week-day.sel { background:var(--charcoal); }
+.week-day-name { font-size:8px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px; }
+.week-day.sel .week-day-name { color:rgba(255,255,255,0.45); }
+.week-day-emoji { font-size:20px; margin-bottom:4px; }
+.week-day-theme { font-size:9px; font-weight:600; color:var(--muted); line-height:1.3; }
+.week-day.sel .week-day-theme { color:var(--gold); }
+.day-detail-box { background:white; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.day-detail-head { background:var(--charcoal); padding:1.25rem 1.5rem; display:flex; align-items:center; justify-content:space-between; }
+.day-detail-title { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:400; color:white; }
+.day-detail-body { padding:1.25rem 1.5rem; }
+.day-features { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:1rem; }
+.day-feat-tag { font-size:10px; font-weight:600; padding:4px 10px; border-radius:100px; background:var(--warm-white); border:1px solid var(--border); color:var(--ink); }
+.day-info-label { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.day-info-box { background:var(--cream); border-radius:4px; padding:.75rem 1rem; font-size:12px; color:var(--ink); line-height:1.6; }
 
-.daily-fit-card{
-  max-width: 1200px;
-  margin: auto;
-  background: white;
-  border-radius: 6px;
-  padding: 3rem;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 3rem;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-}
+/* STYLE TIPS */
+.style-tips { background:var(--charcoal); padding:4rem 3rem; text-align:center; }
+.style-tips .section-eyebrow { color:var(--gold); }
+.style-tips .section-title { color:var(--cream); }
+.tips-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; text-align:left; }
+.tip-card { padding:2rem; border:0.5px solid rgba(255,255,255,0.1); }
+.tip-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold); opacity:.5; line-height:1; margin-bottom:.5rem; }
+.tip-title { font-size:14px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--cream); margin-bottom:.75rem; }
+.tip-desc { font-size:14px; color:rgba(250,247,242,0.6); line-height:1.8; }
 
-.weather-side{
-  border-right: 1px solid var(--border);
-  padding-right: 2rem;
-}
+/* PALETTE */
+.palette-section { padding:5rem 3rem; background:var(--cream); }
+.palette-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1.5rem; margin-top:3rem; }
+.palette-card { text-align:center; cursor:pointer; }
+.color-swatch { height:80px; border-radius:4px; margin-bottom:.75rem; transition:transform .2s; }
+.palette-card:hover .color-swatch { transform:scale(1.04); }
+.palette-label { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:.25rem; }
+.palette-occasions { font-size:11px; color:var(--muted); }
 
-.weather-top{
-  display:flex;
-  align-items:center;
-  gap:16px;
-  margin-bottom:2rem;
-}
+/* FOOTER */
+footer { background:var(--charcoal); color:rgba(255,255,255,0.4); text-align:center; padding:2.5rem 3rem; font-size:12px; letter-spacing:.06em; border-top:1px solid rgba(255,255,255,0.05); }
+footer a { color:var(--gold); text-decoration:none; }
+.footer-logo { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; letter-spacing:.15em; color:var(--cream); text-transform:uppercase; margin-bottom:.75rem; }
 
-.weather-icon{
-  font-size:72px;
-}
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; border:none; cursor:pointer; transition:all .2s; border-radius:2px; }
+.btn-gold { background:var(--gold); color:var(--charcoal); }
+.btn-gold:hover { background:var(--gold-dark); color:white; transform:translateY(-1px); }
+.btn-dark { background:var(--charcoal); color:var(--cream); }
+.btn-dark:hover { background:var(--ink); transform:translateY(-1px); }
+.btn-sm { padding:8px 16px; font-size:11px; }
 
-.weather-temp{
-  font-family: 'Cormorant Garamond', serif;
-  font-size:64px;
-  line-height:1;
-  color:var(--charcoal);
-}
+/* TOAST */
+.toast-wrap { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%); z-index:9999; pointer-events:none; }
+.toast { background:var(--charcoal); color:white; padding:12px 20px; border-radius:4px; font-size:13px; font-weight:500; border-left:3px solid var(--gold); min-width:220px; text-align:center; opacity:0; transform:translateY(12px); transition:opacity .25s,transform .25s; }
+.toast.show { opacity:1; transform:translateY(0); }
 
-.weather-location{
-  color:var(--muted);
-  font-size:14px;
-  margin-top:8px;
-}
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.hero-text > * { animation:fadeUp 0.7s ease both; }
+.hero-text > *:nth-child(1){animation-delay:.1s}
+.hero-text > *:nth-child(2){animation-delay:.2s}
+.hero-text > *:nth-child(3){animation-delay:.3s}
+.hero-text > *:nth-child(4){animation-delay:.4s}
+.hero-images { animation:fadeUp 0.9s ease 0.3s both; }
 
-.weather-condition{
-  display:inline-block;
-  margin-top:1rem;
-  background:var(--cream);
-  padding:8px 14px;
-  border-radius:100px;
-  font-size:12px;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-}
-
-.fit-side{}
-
-.fit-label{
-  font-size:11px;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--gold);
-  margin-bottom:1rem;
-  font-weight:500;
-}
-
-.fit-title{
-  font-family: 'Cormorant Garamond', serif;
-  font-size:clamp(2rem,4vw,3.2rem);
-  line-height:1.1;
-  margin-bottom:1rem;
-  color:var(--charcoal);
-}
-
-.fit-desc{
-  color:var(--muted);
-  line-height:1.9;
-  max-width:700px;
-  margin-bottom:2rem;
-}
-
-.fit-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-
-.fit-tag{
-  padding:10px 18px;
-  background:var(--cream);
-  border:1px solid var(--border);
-  border-radius:100px;
-  font-size:13px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.fit-tag:hover{
-  background:var(--gold);
-  color:white;
-  transform:translateY(-2px);
-}
-
-.fit-loading{
-  color:var(--muted);
-}
-
+/* RESPONSIVE */
 @media(max-width:900px){
-
-  .daily-fit{
-    padding:3rem 1.5rem;
-  }
-
-  .daily-fit-card{
-    grid-template-columns:1fr;
-    padding:2rem;
-  }
-
-  .weather-side{
-    border-right:none;
-    border-bottom:1px solid var(--border);
-    padding-right:0;
-    padding-bottom:2rem;
-  }
-
+  nav{padding:0 1.25rem}
+  .hero{grid-template-columns:1fr;padding:2rem 1.5rem;min-height:auto;gap:2rem}
+  .hero::before{display:none}
+  .hero-images{height:340px}
+  .daily-fit{padding:3rem 1.5rem}
+  .daily-fit-card{grid-template-columns:1fr;padding:1.75rem;gap:2rem}
+  .weather-side{border-right:none;border-bottom:1px solid var(--border);padding-right:0;padding-bottom:1.5rem}
+  .fit-outfits{grid-template-columns:1fr 1fr}
+  .poll-section,.randomizer-section,.calendar-section,.streak-section,.schedule-section,.style-tips,.palette-section{padding:3rem 1.5rem}
+  .panel-grid,.panel-grid.reverse{grid-template-columns:1fr;gap:2.5rem}
+  .panel-grid.reverse .panel-images{order:0}
+  .occasion-panel{padding:2rem 1.5rem}
+  .section-intro{padding:3rem 1.5rem 2rem}
+  .tips-grid{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+  .dos-donts{grid-template-columns:1fr}
+  .randomizer-board{grid-template-columns:repeat(3,1fr)}
+  .badges-grid{grid-template-columns:repeat(3,1fr)}
+  .week-strip{grid-template-columns:repeat(7,1fr)}
+  .week-day-theme{display:none}
 }
-    
-    
- 
-  /* ── SECTION INTRO ── */
-  .section-intro {
-    text-align: center; padding: 5rem 3rem 3rem;
-  }
-  .section-eyebrow {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 300; color: var(--charcoal);
-    line-height: 1.1; margin-bottom: 1rem;
-  }
-  .section-sub {
-    font-size: 15px; color: var(--muted); max-width: 540px; margin: 0 auto;
-    line-height: 1.8;
-  }
- 
-  /* ── OCCASION TABS ── */
-  .occasion-tabs {
-    display: flex; justify-content: center; gap: 0;
-    padding: 2rem 3rem 0;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-  }
-
-
-/* HIDE OLD TABS */
-
-.occasion-tabs{
-  display:none;
-}
-  .tab-btn {
-    background: none; border: none;
-    padding: 14px 28px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 400;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--muted); cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: color 0.2s, border-color 0.2s;
-    white-space: nowrap;
-  }
-  .tab-btn.active { color: var(--charcoal); border-bottom-color: var(--gold); }
-  .tab-btn:hover:not(.active) { color: var(--ink); }
- 
-  /* ── OCCASION PANELS ── */
-  .occasion-panel { display: none; padding: 4rem 3rem; }
-  .occasion-panel.active { display: block; }
- 
-  .panel-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
-  .panel-grid.reverse { grid-template-columns: 1.2fr 1fr; }
-  .panel-grid.reverse .panel-images { order: -1; }
- 
-  .panel-info {}
-  .panel-badge {
-    display: inline-block;
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    padding: 5px 12px; margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
-  .badge-party { background: var(--dusty); color: #5A4A8A; }
-  .badge-office { background: var(--sage); color: #3A5C3A; }
-  .badge-wedding { background: var(--blush); color: #8A4A5A; }
-  .badge-casual { background: var(--cream); color: #6A5A3A; border: 1px solid var(--gold-light); }
-  .badge-formal { background: var(--charcoal); color: var(--gold); }
-  .badge-date { background: #F8E8EC; color: #7A3A50; }
- 
-  .panel-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 300; line-height: 1.1; color: var(--charcoal);
-    margin-bottom: 1rem;
-  }
-  .panel-title em { font-style: italic; }
-  .panel-desc {
-    font-size: 15px; line-height: 1.85; color: var(--muted);
-    margin-bottom: 2rem;
-  }
- 
-  .dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-  .do-block, .dont-block {
-    padding: 1.25rem;
-    border-radius: 2px;
-  }
-  .do-block { background: var(--sage); }
-  .dont-block { background: var(--blush); }
-  .do-block h4 {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: #3A5C3A; font-weight: 500; margin-bottom: 0.75rem;
-  }
-  .dont-block h4 {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: #8A4A5A; font-weight: 500; margin-bottom: 0.75rem;
-  }
-  .do-block ul, .dont-block ul {
-    list-style: none; font-size: 13px; line-height: 1.9;
-  }
-  .do-block li::before { content: '✓  '; color: #3A5C3A; font-weight: 500; }
-  .dont-block li::before { content: '✗  '; color: #8A4A5A; font-weight: 500; }
- 
-  .essentials-label {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold-dark); font-weight: 500; margin-bottom: 0.75rem;
-  }
-  .essentials-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    padding: 6px 14px;
-    border: 0.5px solid var(--border-strong);
-    font-size: 12px; color: var(--ink);
-    border-radius: 100px;
-    transition: background 0.2s, border-color 0.2s;
-    cursor: default;
-  }
-  .chip:hover { background: var(--cream); border-color: var(--gold-light); }
- 
-  /* ── PINTEREST IMAGES ── */
-  .panel-images {}
-  .pin-mosaic { display: grid; gap: 12px; }
-  .pin-mosaic-3 { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
-  .pin-mosaic-3 .pin-card:first-child { grid-column: 1 / -1; }
- 
-  .pin-card {
-    position: relative; overflow: hidden; border-radius: 4px;
-    cursor: pointer;
-    background: var(--cream);
-  }
-  .pin-card img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
-  }
-  .pin-card:hover img { transform: scale(1.04); }
-  .pin-card .pin-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(28,28,26,0.55) 0%, transparent 50%);
-    opacity: 0; transition: opacity 0.3s;
-    display: flex; align-items: flex-end; padding: 1rem;
-  }
-  .pin-card:hover .pin-overlay { opacity: 1; }
-  .pin-overlay-text { color: white; font-size: 12px; letter-spacing: 0.06em; }
-  .pin-source {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 10px; color: var(--muted);
-    padding: 6px 10px;
-    background: white;
-    border-top: 0.5px solid var(--border);
-  }
-  .pin-source svg { width: 12px; height: 12px; color: #E60023; flex-shrink: 0; }
- 
-  /* Tall images */
-  .pin-card.tall { height: 340px; }
-  .pin-card.medium { height: 220px; }
-  .pin-card.wide { height: 280px; }
- 
-  /* ── STYLE TIPS STRIP ── */
-  .style-tips {
-    background: var(--charcoal);
-    padding: 4rem 3rem;
-    text-align: center;
-  }
-  .style-tips .section-eyebrow { color: var(--gold); }
-  .style-tips .section-title { color: var(--cream); }
-  .tips-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 2rem; margin-top: 3rem; text-align: left;
-  }
-  .tip-card { padding: 2rem; border: 0.5px solid rgba(255,255,255,0.1); }
-  .tip-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem; font-weight: 300; color: var(--gold);
-    opacity: 0.5; line-height: 1; margin-bottom: 0.5rem;
-  }
-  .tip-title {
-    font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
-    text-transform: uppercase; color: var(--cream);
-    margin-bottom: 0.75rem;
-  }
-  .tip-desc { font-size: 14px; color: rgba(250,247,242,0.6); line-height: 1.8; }
- 
-  /* ── COLOR PALETTE GUIDE ── */
-  .palette-section { padding: 5rem 3rem; background: var(--cream); }
-  .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-  .palette-card { text-align: center; }
-  .color-swatch { height: 80px; border-radius: 4px; margin-bottom: 0.75rem; }
-  .palette-label { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
-  .palette-occasions { font-size: 11px; color: var(--muted); }
- 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--charcoal); color: rgba(254, 254, 254, 0.5);
-    text-align: center; padding: 2.5rem 3rem;
-    font-size: 12px; letter-spacing: 0.06em;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-  footer a { color: var(--gold); text-decoration: none; }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 24px; font-weight: 300; letter-spacing: 0.15em;
-    color: var(--cream); text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
- 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-text > * { animation: fadeUp 0.7s ease both; }
-  .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
-  .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
-  .hero-images { animation: fadeUp 0.9s ease 0.3s both; }
- 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 2rem 1.5rem; min-height: auto; gap: 2rem; }
-    .hero::before { display: none; }
-    .hero-images { height: 360px; }
-    .panel-grid, .panel-grid.reverse { grid-template-columns: 1fr; gap: 2.5rem; }
-    .panel-grid.reverse .panel-images { order: 0; }
-    .occasion-panel { padding: 2rem 1.5rem; }
-    .section-intro { padding: 3rem 1.5rem 2rem; }
-    .tips-grid { grid-template-columns: 1fr; }
-    .style-tips, .palette-section { padding: 3rem 1.5rem; }
-    footer { padding: 2rem 1.5rem; }
-    .occasion-tabs { padding: 1.5rem 1.5rem 0; justify-content: flex-start; }
-    .dos-donts { grid-template-columns: 1fr; }
-  }
 </style>
 </head>
 <body>
- 
+
+<!-- OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<div class="occasion-drawer" id="occasionDrawer">
+  <div class="drawer-top">
+    <span class="drawer-logo">Dress<span>Code</span></span>
+    <button class="drawer-close-btn" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-streak-box">
+      <div class="drawer-streak-num" id="drawer-streak-num">0</div>
+      <div class="drawer-streak-label">🔥 Day Streak</div>
+      <button class="drawer-checkin-btn" id="drawer-checkin-btn" onclick="checkIn()">Check In Today ✓</button>
+    </div>
+
+    <div class="drawer-section-lbl">Occasions</div>
+    <div class="drawer-links" id="occasion-links">
+      <div class="drawer-link" onclick="openOccasion('party',this)">🎉 Party</div>
+      <div class="drawer-link" onclick="openOccasion('office',this)">💼 Office</div>
+      <div class="drawer-link" onclick="openOccasion('wedding',this)">💍 Wedding</div>
+      <div class="drawer-link" onclick="openOccasion('casual',this)">☀️ Casual</div>
+      <div class="drawer-link" onclick="openOccasion('formal',this)">🎭 Black Tie</div>
+      <div class="drawer-link" onclick="openOccasion('date',this)">🌹 Date Night</div>
+    </div>
+
+    <div class="drawer-section-lbl">Features</div>
+    <div class="drawer-links">
+      <div class="drawer-link" onclick="openFeature('poll-section',this)">📊 Fashion Poll</div>
+      <div class="drawer-link" onclick="openFeature('randomizer-section',this)">🎲 Capsule Randomizer</div>
+      <div class="drawer-link" onclick="openFeature('calendar-section',this)">📅 30-Day Closet Cleanup</div>
+      <div class="drawer-link" onclick="openFeature('streak-section',this)">🔥 Streak & Badges</div>
+      <div class="drawer-link" onclick="openFeature('schedule-section',this)">🗓 Week Schedule</div>
+      <div class="drawer-link" onclick="openFeature('tips-section',this)">💡 Style Tips</div>
+      <div class="drawer-link" onclick="openFeature('palette-section',this)">🎨 Colour Palette</div>
+    </div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Dress<span>Code</span></a>
-  
-
-
-<button class="menu-toggle" onclick="openDrawer()">
-
-  <span></span>
-  <span></span>
-  <span></span>
-
-</button>
-
+  <div class="nav-right">
+    <div class="nav-streak" onclick="openFeature('streak-section',null);closeDrawer()">
+      🔥 <span id="nav-streak-count">0</span> day streak
+    </div>
+    <button class="menu-toggle" onclick="openDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-  
- 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-text">
     <div class="hero-eyebrow">Your Personal Style Guide</div>
     <h1>Dress for<br>every <em>occasion</em><br>perfectly</h1>
     <p>From boardroom power dressing to wedding elegance — curated looks and expert guidance so you always arrive dressed exactly right.</p>
-    <a class="hero-cta" href="#occasions" onclick="document.getElementById('occasions').scrollIntoView({behavior:'smooth'}); return false;">
+    <button class="hero-cta" onclick="openDrawer()">
       Explore Looks
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    </button>
   </div>
   <div class="hero-images">
     <div class="hero-img-stack">
-      <img
-        src="https://i.pinimg.com/736x/b5/2e/3e/b52e3e2b1b6e8a4f4e5b8d1e3e7b0c1a.jpg"
-        onerror="this.src='https://i.pinimg.com/1200x/57/b5/da/57b5da62e9bb596554d4893703c8ce19.jpg'"
-        alt="Fashion editorial look"
-        loading="eager"
-      >
-      <img
-        src="https://i.pinimg.com/736x/a1/2b/3c/a12b3c4d5e6f7a8b9c0d1e2f3a4b5c6d.jpg"
-        onerror="this.src='https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80'"
-        alt="Elegant outfit"
-        loading="eager"
-      >
+      <img src="https://i.pinimg.com/1200x/57/b5/da/57b5da62e9bb596554d4893703c8ce19.jpg" onerror="this.src='https://i.pinimg.com/1200x/57/b5/da/57b5da62e9bb596554d4893703c8ce19.jpg'" alt="Fashion editorial">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80" alt="Elegant outfit">
       <div class="hero-tag">★ Pinterest Curated</div>
     </div>
   </div>
 </section>
-    
-    
-<!-- DAILY FIT -->
 
-<section class="daily-fit">
-
+<!-- DAILY FIT (always visible) -->
+<section class="daily-fit" id="daily-fit-section">
   <div class="daily-fit-card">
-
     <div class="weather-side">
-
       <div class="weather-top">
-
-        <div class="weather-icon" id="weatherIcon">
-          ☀️
-        </div>
-
+        <div class="weather-icon" id="weatherIcon">⏳</div>
         <div>
-
-          <div class="weather-temp" id="weatherTemp">
-            --
-          </div>
-
-          <div class="weather-location" id="weatherLocation">
-            Detecting location...
-          </div>
-
+          <div class="weather-temp" id="weatherTemp">--</div>
+          <div class="weather-location" id="weatherLocation">Detecting location…</div>
         </div>
-
       </div>
-
-      <div class="weather-condition" id="weatherCondition">
-        Loading weather...
-      </div>
-
+      <div class="weather-condition" id="weatherCondition">Loading…</div>
     </div>
-
     <div class="fit-side">
-
-      <div class="fit-label">
-        Daily Fit Recommendation
-      </div>
-
-      <h2 class="fit-title" id="fitTitle">
-        Finding your perfect outfit...
-      </h2>
-
-      <p class="fit-desc" id="fitDesc">
-        Please wait while we analyze today's weather.
-      </p>
-
+      <div class="fit-label">Daily Fit Recommendation</div>
+      <h2 class="fit-title" id="fitTitle">Finding your perfect outfit…</h2>
+      <p class="fit-desc" id="fitDesc">Fetching your local weather data to suggest today's best looks.</p>
       <div class="fit-tags" id="fitTags"></div>
-
+      <div class="fit-outfits" id="fitOutfits"></div>
     </div>
-
   </div>
+</section>
 
-</section>    
-    
+<!-- ══ ALL FEATURE SECTIONS — hidden by default ══ -->
 
-<!-- DRAWER OVERLAY -->
-
-<div
-  class="drawer-overlay"
-  id="drawerOverlay"
-  onclick="closeDrawer()"
-></div>
-
-<!-- OCCASION DRAWER -->
-
-<div class="occasion-drawer" id="occasionDrawer">
-
-  <div class="drawer-close">
-    <button onclick="closeDrawer()">✕</button>
-  </div>
-
-  <div class="drawer-links">
-
-    <div
-      class="drawer-link"
-      onclick="openOccasion('party')"
-    >
-      🎉 Party
-    </div>
-
-    <div
-      class="drawer-link"
-      onclick="openOccasion('office')"
-    >
-      💼 Office
-    </div>
-
-    <div
-      class="drawer-link"
-      onclick="openOccasion('wedding')"
-    >
-      💍 Wedding
-    </div>
-
-    <div
-      class="drawer-link"
-      onclick="openOccasion('casual')"
-    >
-      ☀️ Casual
-    </div>
-
-    <div
-      class="drawer-link"
-      onclick="openOccasion('formal')"
-    >
-      🎭 Black Tie
-    </div>
-
-    <div
-      class="drawer-link"
-      onclick="openOccasion('date')"
-    >
-      🌹 Date Night
-    </div>
-
-    <div
-    class="drawer-link"
-    onclick="openTips()"
-    >
-      💡 Style Tips
-    </div>
-
-    <div
-      class="drawer-link"
-      onclick="openPalette()"
-    >
-      🎨 Colour Palette
-    </div>
-
-  </div>
-
-</div>
-
- 
 <!-- OCCASIONS -->
-<div id="occasions" style="display:none;">
+<div id="occasions-section" class="feature-section">
   <div class="section-intro">
     <div class="section-eyebrow">Style by occasion</div>
     <h2 class="section-title">What to wear, <em>when</em></h2>
-    <p class="section-sub">Select your occasion below for tailored outfit ideas, style rules, and curated inspiration boards.</p>
+    <p class="section-sub">Curated outfit ideas, style rules, and your Pinterest boards — all in one place.</p>
   </div>
- 
-  <!-- DRAWER TOPBAR -->
 
-
- 
   <!-- PARTY -->
-  <div class="occasion-panel active" id="panel-party">
+  <div class="occasion-panel" id="panel-party">
     <div class="panel-grid">
       <div class="panel-info">
         <div class="panel-badge badge-party">Party</div>
         <h2 class="panel-title">Stand out,<br><em>shine bright</em></h2>
         <p class="panel-desc">A party is your moment to express personality and have fun with fashion. Whether it's a cocktail soirée or a birthday bash, the key is confidence. Choose pieces that make you feel alive — sequins, bold prints, or a silhouette you love.</p>
         <div class="dos-donts">
-          <div class="do-block">
-            <h4>✓ Do</h4>
-            <ul>
-              <li>Wear sequins or metallics</li>
-              <li>Try a bold colour block</li>
-              <li>Statement accessories</li>
-              <li>Heeled boots or strappy heels</li>
-              <li>A chic mini or midi dress</li>
-            </ul>
-          </div>
-          <div class="dont-block">
-            <h4>✗ Don't</h4>
-            <ul>
-              <li>Wear ripped casual jeans</li>
-              <li>Oversized hoodies</li>
-              <li>Flat sneakers (unless party theme)</li>
-              <li>All-black with no texture</li>
-              <li>Ignore the dress code</li>
-            </ul>
-          </div>
+          <div class="do-block"><h4>✓ Do</h4><ul><li>Wear sequins or metallics</li><li>Try a bold colour block</li><li>Statement accessories</li><li>Heeled boots or strappy heels</li><li>A chic mini or midi dress</li></ul></div>
+          <div class="dont-block"><h4>✗ Don't</h4><ul><li>Wear ripped casual jeans</li><li>Oversized hoodies</li><li>Flat sneakers (unless themed)</li><li>All-black with no texture</li><li>Ignore the dress code</li></ul></div>
         </div>
-        <div class="essentials-label">Party Essentials</div>
+        <div class="essentials-label">Party Essentials — click to search</div>
         <div class="essentials-chips">
-          <span
-            class="chip"
-            onclick="searchGoogle('Sequin Mini Dress')"
-          >
-            Sequin Mini Dress
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Satin Slip')"
-          >
-            Satin Slip
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Velvet Blazer')"
-          >
-            Velvet Blazer
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Strappy Heels')"
-          >
-            Strappy Heels
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Clutch Bag')"
-          >
-            Clutch Bag
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Statement Earrings')"
-          >
-            Statement Earrings
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Metallic Top')"
-          >
-            Metallic Top
-          </span>
+          <span class="chip" onclick="sg('Sequin Mini Dress')">Sequin Mini Dress</span>
+          <span class="chip" onclick="sg('Satin Slip Dress')">Satin Slip</span>
+          <span class="chip" onclick="sg('Velvet Blazer outfit')">Velvet Blazer</span>
+          <span class="chip" onclick="sg('Strappy Heels party')">Strappy Heels</span>
+          <span class="chip" onclick="sg('Evening Clutch Bag')">Clutch Bag</span>
+          <span class="chip" onclick="sg('Statement Earrings')">Statement Earrings</span>
+          <span class="chip" onclick="sg('Metallic Top outfit')">Metallic Top</span>
+        </div>
+        <button class="view-board-btn" onclick="togglePin('party')">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          View My Party Board
+        </button>
+        <div class="pin-setup-bar" id="pin-setup-party">
+          <span style="font-size:12px;font-weight:600;color:var(--gold-dark)">📌 Pinterest board URL:</span>
+          <input class="pin-input" id="pin-input-party" type="url" placeholder="https://pinterest.com/yourname/party-outfits/">
+          <button class="pin-apply-btn" onclick="applyBoard('party')">Load Pins</button>
+          <button onclick="togglePin('party')" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted)">Cancel</button>
+        </div>
+        <div class="pin-embed-area" id="pin-embed-party">
+          <div class="pin-url-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span id="pin-url-party"></span><button onclick="togglePin('party')">Change</button></div>
+          <div id="pin-widget-party" style="background:white;border:1px solid var(--border);border-radius:6px;padding:1.25rem;min-height:300px"><a id="pin-anchor-party" data-pin-do="embedBoard" data-pin-board-width="100%" data-pin-scale-height="400" data-pin-scale-width="80" href="#"></a></div>
         </div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
-          <div class="pin-card wide">
-            <img src="https://i.pinimg.com/736x/8a/3f/c2/8a3fc2b1e4d7a9f0c5e8b2d3f1a6e9c8.jpg"
-              onerror="this.src='https://i.pinimg.com/736x/22/88/b2/2288b20587bc97a577ceb495cfd19090.jpg'"
-              alt="Party outfit sequin dress" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Sequin Cocktail Look</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/4c/7e/1a/4c7e1a2b3d4e5f6a7b8c9d0e1f2a3b4c.jpg"
-              onerror="this.src='https://i.pinimg.com/736x/c7/cb/e0/c7cbe02a047eb695ab5bb65e6a208c79.jpg'"
-              alt="Party style bold" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Bold Colour Block</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/9b/2d/5e/9b2d5e8f1a3c6e9b2d5e8f1a3c6e9b2d.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80'"
-              alt="Party accessories" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Metallic & Accessories</div></div>
-          </div>
+          <div class="pin-card wide"><img src="https://i.pinimg.com/736x/22/88/b2/2288b20587bc97a577ceb495cfd19090.jpg" loading="lazy" alt="Party"><div class="pin-overlay"><div class="pin-overlay-text">Sequin Cocktail Look</div></div></div>
+          <div class="pin-card medium"><img src="https://i.pinimg.com/736x/c7/cb/e0/c7cbe02a047eb695ab5bb65e6a208c79.jpg" loading="lazy" alt="Bold"><div class="pin-overlay"><div class="pin-overlay-text">Bold Colour Block</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400&q=80" loading="lazy" alt="Accessories"><div class="pin-overlay"><div class="pin-overlay-text">Metallic & Accessories</div></div></div>
         </div>
-        
+        <div class="pin-source"><svg viewBox="0 0 24 24" fill="#E60023" style="width:12px;height:12px;flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> Pinterest inspiration</div>
       </div>
     </div>
   </div>
- 
+
   <!-- OFFICE -->
   <div class="occasion-panel" id="panel-office">
     <div class="panel-grid reverse">
       <div class="panel-info">
         <div class="panel-badge badge-office">Office</div>
         <h2 class="panel-title">Power dressing,<br><em>refined</em></h2>
-        <p class="panel-desc">Your office attire speaks before you do. Dress with intention — tailored pieces, polished fabrics, and a composed colour palette communicate professionalism and command respect. Smart doesn't have to mean boring.</p>
+        <p class="panel-desc">Your office attire speaks before you do. Dress with intention — tailored pieces, polished fabrics, and a composed colour palette communicate professionalism and command respect.</p>
         <div class="dos-donts">
-          <div class="do-block">
-            <h4>✓ Do</h4>
-            <ul>
-              <li>Tailored blazers & trousers</li>
-              <li>Clean, polished footwear</li>
-              <li>Neutral & muted palettes</li>
-              <li>Well-fitted button-down shirts</li>
-              <li>Classic midi skirts</li>
-            </ul>
-          </div>
-          <div class="dont-block">
-            <h4>✗ Don't</h4>
-            <ul>
-              <li>Flip flops or beach sandals</li>
-              <li>Overly casual graphic tees</li>
-              <li>Overly revealing necklines</li>
-              <li>Loud novelty prints</li>
-              <li>Wrinkled or unironed clothes</li>
-            </ul>
-          </div>
+          <div class="do-block"><h4>✓ Do</h4><ul><li>Tailored blazers & trousers</li><li>Clean, polished footwear</li><li>Neutral & muted palettes</li><li>Well-fitted button-down shirts</li><li>Classic midi skirts</li></ul></div>
+          <div class="dont-block"><h4>✗ Don't</h4><ul><li>Flip flops or beach sandals</li><li>Overly casual graphic tees</li><li>Overly revealing necklines</li><li>Loud novelty prints</li><li>Wrinkled or unironed clothes</li></ul></div>
         </div>
-        <div class="essentials-label">Office Essentials</div>
+        <div class="essentials-label">Office Essentials — click to search</div>
         <div class="essentials-chips">
-          <span
-            class="chip"
-            onclick="searchGoogle('Tailored Blazer')"
-          >
-            Tailored Blazer
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Silk Blouse')"
-          >
-            Silk Blouse
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Ponte Trousers')"
-          >
-            Ponte Trousers
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Oxford Shoes')"
-          >
-            Oxford Shoes
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Structured Tote')"
-          >
-            Structured Tote
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Midi Pencil Skirt')"
-          >
-            Midi Pencil Skirt
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Knit Twin Set')"
-          >
-            Knit Twin Set
-          </span>
+          <span class="chip" onclick="sg('Tailored Blazer women')">Tailored Blazer</span>
+          <span class="chip" onclick="sg('Silk Blouse office')">Silk Blouse</span>
+          <span class="chip" onclick="sg('Ponte Trousers women')">Ponte Trousers</span>
+          <span class="chip" onclick="sg('Oxford Shoes women')">Oxford Shoes</span>
+          <span class="chip" onclick="sg('Structured Tote Bag work')">Structured Tote</span>
+          <span class="chip" onclick="sg('Midi Pencil Skirt office')">Midi Pencil Skirt</span>
+          <span class="chip" onclick="sg('Knit Twin Set women')">Knit Twin Set</span>
         </div>
+        <button class="view-board-btn" onclick="togglePin('office')">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          View My Office Board
+        </button>
+        <div class="pin-setup-bar" id="pin-setup-office"><span style="font-size:12px;font-weight:600;color:var(--gold-dark)">📌 Pinterest board URL:</span><input class="pin-input" id="pin-input-office" type="url" placeholder="https://pinterest.com/yourname/office-style/"><button class="pin-apply-btn" onclick="applyBoard('office')">Load Pins</button><button onclick="togglePin('office')" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted)">Cancel</button></div>
+        <div class="pin-embed-area" id="pin-embed-office"><div class="pin-url-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span id="pin-url-office"></span><button onclick="togglePin('office')">Change</button></div><div id="pin-widget-office" style="background:white;border:1px solid var(--border);border-radius:6px;padding:1.25rem;min-height:300px"><a id="pin-anchor-office" data-pin-do="embedBoard" data-pin-board-width="100%" data-pin-scale-height="400" data-pin-scale-width="80" href="#"></a></div></div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
-          <div class="pin-card wide">
-            <img src="https://i.pinimg.com/736x/c3/5a/8d/c35a8d2f1e4b7c0a9d3f6e2b5c8a1d4f.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80'"
-              alt="Office power look" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Power Suit Look</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/3e/9b/1d/3e9b1d4f7a2c5e8b1d4f7a2c5e8b1d4f.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1548142813-c348350df52b?w=400&q=80'"
-              alt="Office chic style" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Office Chic</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/7f/4a/2e/7f4a2e9c1b6d3a8f5c0e7b4a2e9c1b6d.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&q=80'"
-              alt="Smart office outfit" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Smart Coordinates</div></div>
-          </div>
+          <div class="pin-card wide"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" loading="lazy" alt="Office"><div class="pin-overlay"><div class="pin-overlay-text">Power Suit Look</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1548142813-c348350df52b?w=400&q=80" loading="lazy" alt="Office chic"><div class="pin-overlay"><div class="pin-overlay-text">Office Chic</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=400&q=80" loading="lazy" alt="Smart"><div class="pin-overlay"><div class="pin-overlay-text">Smart Coordinates</div></div></div>
         </div>
-        
+        <div class="pin-source"><svg viewBox="0 0 24 24" fill="#E60023" style="width:12px;height:12px;flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> Pinterest inspiration</div>
       </div>
     </div>
   </div>
- 
+
   <!-- WEDDING -->
   <div class="occasion-panel" id="panel-wedding">
     <div class="panel-grid">
       <div class="panel-info">
         <div class="panel-badge badge-wedding">Wedding</div>
         <h2 class="panel-title">Grace for the<br><em>grandest day</em></h2>
-        <p class="panel-desc">Attending a wedding as a guest is an art — you want to honour the occasion and celebrate the couple while looking your absolute best. Remember: the bride is the star. Dress elegantly without stealing the spotlight.</p>
+        <p class="panel-desc">Attending a wedding as a guest is an art — honour the occasion while looking your absolute best. The bride is the star; dress elegantly without stealing the spotlight.</p>
         <div class="dos-donts">
-          <div class="do-block">
-            <h4>✓ Do</h4>
-            <ul>
-              <li>Floral midi or maxi dresses</li>
-              <li>Elegant jumpsuits</li>
-              <li>Pastel or jewel tone palette</li>
-              <li>Fascinators or hair accessories</li>
-              <li>Block-heel or wedge shoes</li>
-            </ul>
-          </div>
-          <div class="dont-block">
-            <h4>✗ Don't</h4>
-            <ul>
-              <li>Wear white, cream, or ivory</li>
-              <li>Outshine the wedding party</li>
-              <li>Wear black alone (context matters)</li>
-              <li>Casual jeans or shorts</li>
-              <li>Overly revealing outfits</li>
-            </ul>
-          </div>
+          <div class="do-block"><h4>✓ Do</h4><ul><li>Floral midi or maxi dresses</li><li>Elegant jumpsuits</li><li>Pastel or jewel tone palette</li><li>Fascinators or hair accessories</li><li>Block-heel or wedge shoes</li></ul></div>
+          <div class="dont-block"><h4>✗ Don't</h4><ul><li>Wear white, cream, or ivory</li><li>Outshine the wedding party</li><li>Wear all-black</li><li>Casual jeans or shorts</li><li>Overly revealing outfits</li></ul></div>
         </div>
-        <div class="essentials-label">Wedding Guest Essentials</div>
+        <div class="essentials-label">Wedding Guest Essentials — click to search</div>
         <div class="essentials-chips">
-          <span
-            class="chip"
-            onclick="searchGoogle('Floral Maxi Dress')"
-          >
-            Floral Maxi
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Pastel Suit')"
-          >
-            Pastel Suit
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Silk Wrap Dress')"
-          >
-            Silk Wrap Dress
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Fascinator')"
-          >
-            Fascinator
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Block Heel Sandals')"
-          >
-            Block Heel Sandals
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Clutch')"
-          >
-            Clutch
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Pearl Jewellery')"
-          >
-            Pearl Jewellery
-          </span>
+          <span class="chip" onclick="sg('Floral Maxi Dress wedding guest')">Floral Maxi</span>
+          <span class="chip" onclick="sg('Pastel Suit women wedding')">Pastel Suit</span>
+          <span class="chip" onclick="sg('Silk Wrap Dress wedding')">Silk Wrap Dress</span>
+          <span class="chip" onclick="sg('Fascinator hat wedding')">Fascinator</span>
+          <span class="chip" onclick="sg('Block Heel Sandals wedding')">Block Heel Sandals</span>
+          <span class="chip" onclick="sg('Evening Clutch wedding')">Clutch</span>
+          <span class="chip" onclick="sg('Pearl Jewellery set')">Pearl Jewellery</span>
         </div>
+        <button class="view-board-btn" onclick="togglePin('wedding')"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>View My Wedding Board</button>
+        <div class="pin-setup-bar" id="pin-setup-wedding"><span style="font-size:12px;font-weight:600;color:var(--gold-dark)">📌 Pinterest board URL:</span><input class="pin-input" id="pin-input-wedding" type="url" placeholder="https://pinterest.com/yourname/wedding-guest/"><button class="pin-apply-btn" onclick="applyBoard('wedding')">Load Pins</button><button onclick="togglePin('wedding')" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted)">Cancel</button></div>
+        <div class="pin-embed-area" id="pin-embed-wedding"><div class="pin-url-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span id="pin-url-wedding"></span><button onclick="togglePin('wedding')">Change</button></div><div id="pin-widget-wedding" style="background:white;border:1px solid var(--border);border-radius:6px;padding:1.25rem;min-height:300px"><a id="pin-anchor-wedding" data-pin-do="embedBoard" data-pin-board-width="100%" data-pin-scale-height="400" data-pin-scale-width="80" href="#"></a></div></div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
-          <div class="pin-card wide">
-            <img src="https://i.pinimg.com/736x/2a/7c/5f/2a7c5f9e3b6d1a8c4e7f2a7c5f9e3b6d.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80'"
-              alt="Wedding guest outfit" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Floral Elegance</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/8e/1b/4d/8e1b4d7f2a5c9e3b6d1a8c4e7f2a5c9e.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80'"
-              alt="Wedding guest pastel" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Pastel Garden Look</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/6f/3a/9c/6f3a9c2e5b8d1a4f7c0e3b6d9a2c5e8f.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80'"
-              alt="Wedding guest accessories" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Accessory Details</div></div>
-          </div>
+          <div class="pin-card wide"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" loading="lazy" alt="Wedding"><div class="pin-overlay"><div class="pin-overlay-text">Floral Elegance</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=80" loading="lazy" alt="Pastel"><div class="pin-overlay"><div class="pin-overlay-text">Pastel Garden Look</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80" loading="lazy" alt="Accessories"><div class="pin-overlay"><div class="pin-overlay-text">Accessory Details</div></div></div>
         </div>
-        
+        <div class="pin-source"><svg viewBox="0 0 24 24" fill="#E60023" style="width:12px;height:12px;flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> Pinterest inspiration</div>
       </div>
     </div>
   </div>
- 
+
   <!-- CASUAL -->
   <div class="occasion-panel" id="panel-casual">
     <div class="panel-grid reverse">
       <div class="panel-info">
         <div class="panel-badge badge-casual">Casual</div>
         <h2 class="panel-title">Effortless,<br><em>everyday style</em></h2>
-        <p class="panel-desc">Casual doesn't mean careless. Elevated everyday dressing is about mixing comfort with intention — quality basics, well-chosen textures, and thoughtful layering that makes you look put-together without trying too hard.</p>
+        <p class="panel-desc">Casual doesn't mean careless. Elevated everyday dressing is about mixing comfort with intention — quality basics, well-chosen textures, and thoughtful layering.</p>
         <div class="dos-donts">
-          <div class="do-block">
-            <h4>✓ Do</h4>
-            <ul>
-              <li>Quality denim & linen</li>
-              <li>Crisp white tee with tailored trousers</li>
-              <li>Layer with lightweight knits</li>
-              <li>Clean white sneakers</li>
-              <li>Minimal jewellery</li>
-            </ul>
-          </div>
-          <div class="dont-block">
-            <h4>✗ Don't</h4>
-            <ul>
-              <li>Wear pilled or faded clothing</li>
-              <li>Ill-fitting basics</li>
-              <li>Mix too many bold logos</li>
-              <li>Forget to iron/steam</li>
-              <li>Ignore shoe choice</li>
-            </ul>
-          </div>
+          <div class="do-block"><h4>✓ Do</h4><ul><li>Quality denim & linen</li><li>Crisp white tee with tailored trousers</li><li>Layer with lightweight knits</li><li>Clean white sneakers</li><li>Minimal jewellery</li></ul></div>
+          <div class="dont-block"><h4>✗ Don't</h4><ul><li>Wear pilled or faded clothing</li><li>Ill-fitting basics</li><li>Mix too many bold logos</li><li>Forget to iron/steam</li><li>Ignore shoe choice</li></ul></div>
         </div>
-        <div class="essentials-label">Casual Wardrobe</div>
+        <div class="essentials-label">Casual Wardrobe — click to search</div>
         <div class="essentials-chips">
-          <span
-            class="chip"
-            onclick="searchGoogle('Straight-leg Jeans')"
-          >
-            Straight-leg Jeans
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Linen Shirt')"
-          >
-            Linen Shirt
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('White Tee')"
-          >
-            White Tee
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Chino Shorts')"
-          >
-            Chino Shorts
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Canvas Sneakers')"
-          >
-            Canvas Sneakers
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Knit Cardigan')"
-          >
-            Knit Cardigan
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Tote Bag')"
-          >
-            Tote Bag
-          </span>
+          <span class="chip" onclick="sg('Straight-leg Jeans women')">Straight-leg Jeans</span>
+          <span class="chip" onclick="sg('Linen Shirt casual women')">Linen Shirt</span>
+          <span class="chip" onclick="sg('White Tee essential women')">White Tee</span>
+          <span class="chip" onclick="sg('Chino Shorts women')">Chino Shorts</span>
+          <span class="chip" onclick="sg('Canvas Sneakers women')">Canvas Sneakers</span>
+          <span class="chip" onclick="sg('Knit Cardigan women')">Knit Cardigan</span>
+          <span class="chip" onclick="sg('Canvas Tote Bag')">Tote Bag</span>
         </div>
+        <button class="view-board-btn" onclick="togglePin('casual')"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>View My Casual Board</button>
+        <div class="pin-setup-bar" id="pin-setup-casual"><span style="font-size:12px;font-weight:600;color:var(--gold-dark)">📌 Pinterest board URL:</span><input class="pin-input" id="pin-input-casual" type="url" placeholder="https://pinterest.com/yourname/casual-style/"><button class="pin-apply-btn" onclick="applyBoard('casual')">Load Pins</button><button onclick="togglePin('casual')" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted)">Cancel</button></div>
+        <div class="pin-embed-area" id="pin-embed-casual"><div class="pin-url-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span id="pin-url-casual"></span><button onclick="togglePin('casual')">Change</button></div><div id="pin-widget-casual" style="background:white;border:1px solid var(--border);border-radius:6px;padding:1.25rem;min-height:300px"><a id="pin-anchor-casual" data-pin-do="embedBoard" data-pin-board-width="100%" data-pin-scale-height="400" data-pin-scale-width="80" href="#"></a></div></div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
-          <div class="pin-card wide">
-            <img src="https://i.pinimg.com/736x/1d/4f/8a/1d4f8a3c6e9b2d5f8a1d4f8a3c6e9b2d.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80'"
-              alt="Casual everyday outfit" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Elevated Everyday</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/5c/8e/2a/5c8e2a6f9b3d7a1e5c8e2a6f9b3d7a1e.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&q=80'"
-              alt="Casual chic look" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Denim & Linen</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/9a/3c/7e/9a3c7e1b5d8f2a6c9a3c7e1b5d8f2a6c.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&q=80'"
-              alt="Minimalist casual" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Clean Minimalism</div></div>
-          </div>
+          <div class="pin-card wide"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80" loading="lazy" alt="Casual"><div class="pin-overlay"><div class="pin-overlay-text">Elevated Everyday</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&q=80" loading="lazy" alt="Denim"><div class="pin-overlay"><div class="pin-overlay-text">Denim & Linen</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=400&q=80" loading="lazy" alt="Minimal"><div class="pin-overlay"><div class="pin-overlay-text">Clean Minimalism</div></div></div>
         </div>
-        
+        <div class="pin-source"><svg viewBox="0 0 24 24" fill="#E60023" style="width:12px;height:12px;flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> Pinterest inspiration</div>
       </div>
     </div>
   </div>
- 
-  <!-- FORMAL / BLACK TIE -->
+
+  <!-- FORMAL -->
   <div class="occasion-panel" id="panel-formal">
     <div class="panel-grid">
       <div class="panel-info">
         <div class="panel-badge badge-formal">Black Tie</div>
         <h2 class="panel-title">The art of<br><em>true elegance</em></h2>
-        <p class="panel-desc">Black tie is the pinnacle of dress codes — reserved for galas, operas, and formal ceremonies. This is your moment to embody timeless sophistication. Long gowns, classic tuxedo dressing, and impeccable grooming define this occasion.</p>
+        <p class="panel-desc">Black tie is the pinnacle of dress codes — reserved for galas, operas, and formal ceremonies. Long gowns, classic tuxedo dressing, and impeccable grooming define this occasion.</p>
         <div class="dos-donts">
-          <div class="do-block">
-            <h4>✓ Do</h4>
-            <ul>
-              <li>Floor-length gowns</li>
-              <li>Classic tuxedo or dinner suit</li>
-              <li>Fine jewellery & watches</li>
-              <li>Formal heels or patent shoes</li>
-              <li>Evening bags & gloves</li>
-            </ul>
-          </div>
-          <div class="dont-block">
-            <h4>✗ Don't</h4>
-            <ul>
-              <li>Anything shorter than knee-length</li>
-              <li>Casual shoes or boots</li>
-              <li>Overly trendy or novelty pieces</li>
-              <li>Jeans in any form</li>
-              <li>Costume jewellery</li>
-            </ul>
-          </div>
+          <div class="do-block"><h4>✓ Do</h4><ul><li>Floor-length gowns</li><li>Classic tuxedo or dinner suit</li><li>Fine jewellery & watches</li><li>Formal heels or patent shoes</li><li>Evening bags & gloves</li></ul></div>
+          <div class="dont-block"><h4>✗ Don't</h4><ul><li>Anything shorter than knee-length</li><li>Casual shoes or boots</li><li>Overly trendy novelty pieces</li><li>Jeans in any form</li><li>Costume jewellery</li></ul></div>
         </div>
-        <div class="essentials-label">Black Tie Essentials</div>
+        <div class="essentials-label">Black Tie Essentials — click to search</div>
         <div class="essentials-chips">
-          <span
-            class="chip"
-            onclick="searchGoogle('Floor-Length Gown')"
-          >
-            Floor-Length Gown
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Evening Tuxedo')"
-          >
-            Evening Tuxedo
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Satin Opera Gloves')"
-          >
-            Satin Opera Gloves
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Stiletto Heels')"
-          >
-            Stiletto Heels
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Diamond Studs')"
-          >
-            Diamond Studs
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Minaudière')"
-          >
-            Minaudière
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Silk Pocket Square')"
-          >
-            Silk Pocket Square
-          </span>
+          <span class="chip" onclick="sg('Floor-Length Gown formal')">Floor-Length Gown</span>
+          <span class="chip" onclick="sg('Evening Tuxedo women')">Evening Tuxedo</span>
+          <span class="chip" onclick="sg('Satin Opera Gloves')">Satin Opera Gloves</span>
+          <span class="chip" onclick="sg('Stiletto Heels formal')">Stiletto Heels</span>
+          <span class="chip" onclick="sg('Diamond Stud Earrings')">Diamond Studs</span>
+          <span class="chip" onclick="sg('Minaudiere evening bag')">Minaudière</span>
+          <span class="chip" onclick="sg('Silk Pocket Square men')">Silk Pocket Square</span>
         </div>
+        <button class="view-board-btn" onclick="togglePin('formal')"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>View My Black Tie Board</button>
+        <div class="pin-setup-bar" id="pin-setup-formal"><span style="font-size:12px;font-weight:600;color:var(--gold-dark)">📌 Pinterest board URL:</span><input class="pin-input" id="pin-input-formal" type="url" placeholder="https://pinterest.com/yourname/black-tie/"><button class="pin-apply-btn" onclick="applyBoard('formal')">Load Pins</button><button onclick="togglePin('formal')" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted)">Cancel</button></div>
+        <div class="pin-embed-area" id="pin-embed-formal"><div class="pin-url-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span id="pin-url-formal"></span><button onclick="togglePin('formal')">Change</button></div><div id="pin-widget-formal" style="background:white;border:1px solid var(--border);border-radius:6px;padding:1.25rem;min-height:300px"><a id="pin-anchor-formal" data-pin-do="embedBoard" data-pin-board-width="100%" data-pin-scale-height="400" data-pin-scale-width="80" href="#"></a></div></div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
-          <div class="pin-card wide">
-            <img src="https://i.pinimg.com/736x/4b/9d/2f/4b9d2f5e8a1c4f7b9d2f5e8a1c4f7b9d.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80'"
-              alt="Black tie gown" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Evening Gown Elegance</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/7e/1c/5a/7e1c5a9f2b4d8e1c5a9f2b4d8e1c5a9f.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80'"
-              alt="Formal tuxedo look" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Classic Tuxedo</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/2c/6e/9a/2c6e9a3f7b1d5e2c6e9a3f7b1d5e2c6e.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80'"
-              alt="Formal jewellery details" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Fine Jewellery</div></div>
-          </div>
+          <div class="pin-card wide"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80" loading="lazy" alt="Gown"><div class="pin-overlay"><div class="pin-overlay-text">Evening Gown Elegance</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80" loading="lazy" alt="Tuxedo"><div class="pin-overlay"><div class="pin-overlay-text">Classic Tuxedo</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80" loading="lazy" alt="Jewellery"><div class="pin-overlay"><div class="pin-overlay-text">Fine Jewellery</div></div></div>
         </div>
-        
+        <div class="pin-source"><svg viewBox="0 0 24 24" fill="#E60023" style="width:12px;height:12px;flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> Pinterest inspiration</div>
       </div>
     </div>
   </div>
- 
-  <!-- DATE NIGHT -->
+
+  <!-- DATE -->
   <div class="occasion-panel" id="panel-date">
     <div class="panel-grid reverse">
       <div class="panel-info">
         <div class="panel-badge badge-date">Date Night</div>
         <h2 class="panel-title">Magnetic,<br><em>unforgettable</em></h2>
-        <p class="panel-desc">A date night outfit should feel like a second skin — comfortable enough to be present, beautiful enough to feel special. Strike the balance between effort and ease. The goal: look like the best version of yourself.</p>
+        <p class="panel-desc">A date night outfit should feel like a second skin — comfortable enough to be present, beautiful enough to feel special. The goal: look like the very best version of yourself.</p>
         <div class="dos-donts">
-          <div class="do-block">
-            <h4>✓ Do</h4>
-            <ul>
-              <li>Wear your favourite silhouette</li>
-              <li>Choose one statement piece</li>
-              <li>Soft, touchable fabrics</li>
-              <li>A great fragrance</li>
-              <li>Elevated basics done well</li>
-            </ul>
-          </div>
-          <div class="dont-block">
-            <h4>✗ Don't</h4>
-            <ul>
-              <li>Wear uncomfortable shoes</li>
-              <li>Over-accessorise</li>
-              <li>Wear brand-new unworn items</li>
-              <li>Dress unlike yourself</li>
-              <li>Over-match everything</li>
-            </ul>
-          </div>
+          <div class="do-block"><h4>✓ Do</h4><ul><li>Wear your favourite silhouette</li><li>Choose one statement piece</li><li>Soft, touchable fabrics</li><li>A great fragrance</li><li>Elevated basics done well</li></ul></div>
+          <div class="dont-block"><h4>✗ Don't</h4><ul><li>Wear uncomfortable shoes</li><li>Over-accessorise</li><li>Wear brand-new unworn items</li><li>Dress unlike yourself</li><li>Over-match everything</li></ul></div>
         </div>
-        <div class="essentials-label">Date Night Picks</div>
+        <div class="essentials-label">Date Night Picks — click to search</div>
         <div class="essentials-chips">
-          <span
-            class="chip"
-            onclick="searchGoogle('Satin Slip Dress')"
-          >
-            Satin Slip Dress
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Fitted Blazer Dress')"
-          >
-            Fitted Blazer Dress
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Dark Jeans + Silk Top')"
-          >
-            Dark Jeans + Silk Top
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Block Heels')"
-          >
-            Block Heels
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Dainty Necklace')"
-          >
-            Dainty Necklace
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Small Shoulder Bag')"
-          >
-            Small Shoulder Bag
-          </span>
-          <span
-            class="chip"
-            onclick="searchGoogle('Bold Lip')"
-          >
-            Bold Lip
-          </span>
+          <span class="chip" onclick="sg('Satin Slip Dress date night')">Satin Slip Dress</span>
+          <span class="chip" onclick="sg('Fitted Blazer Dress women')">Fitted Blazer Dress</span>
+          <span class="chip" onclick="sg('Dark Jeans Silk Top outfit')">Dark Jeans + Silk Top</span>
+          <span class="chip" onclick="sg('Block Heels women')">Block Heels</span>
+          <span class="chip" onclick="sg('Dainty Necklace layered')">Dainty Necklace</span>
+          <span class="chip" onclick="sg('Small Shoulder Bag evening')">Small Shoulder Bag</span>
+          <span class="chip" onclick="sg('Bold Lip makeup look')">Bold Lip</span>
         </div>
+        <button class="view-board-btn" onclick="togglePin('date')"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>View My Date Night Board</button>
+        <div class="pin-setup-bar" id="pin-setup-date"><span style="font-size:12px;font-weight:600;color:var(--gold-dark)">📌 Pinterest board URL:</span><input class="pin-input" id="pin-input-date" type="url" placeholder="https://pinterest.com/yourname/date-night/"><button class="pin-apply-btn" onclick="applyBoard('date')">Load Pins</button><button onclick="togglePin('date')" style="background:none;border:none;cursor:pointer;font-size:12px;color:var(--muted)">Cancel</button></div>
+        <div class="pin-embed-area" id="pin-embed-date"><div class="pin-url-pill"><svg width="10" height="10" viewBox="0 0 24 24" fill="#E60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg><span id="pin-url-date"></span><button onclick="togglePin('date')">Change</button></div><div id="pin-widget-date" style="background:white;border:1px solid var(--border);border-radius:6px;padding:1.25rem;min-height:300px"><a id="pin-anchor-date" data-pin-do="embedBoard" data-pin-board-width="100%" data-pin-scale-height="400" data-pin-scale-width="80" href="#"></a></div></div>
       </div>
       <div class="panel-images">
         <div class="pin-mosaic pin-mosaic-3">
-          <div class="pin-card wide">
-            <img src="https://i.pinimg.com/736x/3d/7f/1b/3d7f1b5e9a3c7f1b5e9a3c7f1b5e9a3c.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80'"
-              alt="Date night outfit" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Satin Evening Look</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/6b/0e/4c/6b0e4c8d2f5a9b3e7c1d6b0e4c8d2f5a.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80'"
-              alt="Date night chic" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Effortlessly Chic</div></div>
-          </div>
-          <div class="pin-card medium">
-            <img src="https://i.pinimg.com/736x/9f/2a/6d/9f2a6d1c4e8b2a6d1c4e8b2a6d1c4e8b.jpg"
-              onerror="this.src='https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=400&q=80'"
-              alt="Date night accessories" loading="lazy">
-            <div class="pin-overlay"><div class="pin-overlay-text">Details Matter</div></div>
-          </div>
+          <div class="pin-card wide"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&q=80" loading="lazy" alt="Date night"><div class="pin-overlay"><div class="pin-overlay-text">Satin Evening Look</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80" loading="lazy" alt="Chic"><div class="pin-overlay"><div class="pin-overlay-text">Effortlessly Chic</div></div></div>
+          <div class="pin-card medium"><img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=400&q=80" loading="lazy" alt="Details"><div class="pin-overlay"><div class="pin-overlay-text">Details Matter</div></div></div>
         </div>
-        
+        <div class="pin-source"><svg viewBox="0 0 24 24" fill="#E60023" style="width:12px;height:12px;flex-shrink:0"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg> Pinterest inspiration</div>
       </div>
     </div>
   </div>
 </div>
- 
-<!-- STYLE TIPS -->
-<section
-  id="tips"
-  class="style-tips"
-  style="display:none;"
->
-  <div class="section-eyebrow">Universal Rules</div>
-  <h2 class="section-title" style="color: var(--cream);">The golden rules<br>of <em style="color:var(--gold)">dressing well</em></h2>
-  <div class="tips-grid">
-    <div class="tip-card">
-      <div class="tip-num">01</div>
-      <div class="tip-title">Fit is everything</div>
-      <p class="tip-desc">The most expensive outfit looks cheap if it doesn't fit. Invest in a tailor — even basic pieces look elevated when they're fitted to your body.</p>
+
+<!-- POLL -->
+<section class="feature-section poll-section" id="poll-section">
+  <div class="poll-inner">
+    <div class="poll-eyebrow"><span class="live-dot"></span> Fashion Pulse — Daily Vote</div>
+    <h2 class="poll-title" id="poll-question">Trend or Trash? Crochet co-ords as office wear</h2>
+    <div class="poll-versus">
+      <div class="poll-option" id="poll-a" onclick="castVote('a')"><div class="poll-img">🧶</div><div class="poll-label" id="poll-a-label">Trend ✓</div></div>
+      <div class="vs-circle">VS</div>
+      <div class="poll-option" id="poll-b" onclick="castVote('b')"><div class="poll-img">🚫</div><div class="poll-label" id="poll-b-label">Trash ✗</div></div>
     </div>
-    <div class="tip-card">
-      <div class="tip-num">02</div>
-      <div class="tip-title">Dress the occasion</div>
-      <p class="tip-desc">Always consider the venue, the host, and the guests. Being overdressed shows respect; being underdressed shows you didn't care enough to try.</p>
+    <div id="poll-results" style="display:none">
+      <div class="poll-result-row"><span class="poll-result-label" id="res-a-label">Trend</span><div class="poll-bar-bg"><div class="poll-bar-fill" id="bar-a" style="width:0%"></div></div><span class="poll-pct" id="pct-a">0%</span></div>
+      <div class="poll-result-row"><span class="poll-result-label" id="res-b-label">Trash</span><div class="poll-bar-bg"><div class="poll-bar-fill" id="bar-b" style="width:0%;background:rgba(255,255,255,0.2)"></div></div><span class="poll-pct" id="pct-b">0%</span></div>
+      <div class="poll-total" id="poll-total"></div>
     </div>
-    <div class="tip-card">
-      <div class="tip-num">03</div>
-      <div class="tip-title">Quality over quantity</div>
-      <p class="tip-desc">Three exceptional pieces outperform thirty mediocre ones. Build a capsule wardrobe of well-made basics and rotate intentionally.</p>
+    <div class="poll-voted-msg" id="poll-voted-msg" style="display:none">✓ Vote recorded! Come back tomorrow for a new poll.</div>
+  </div>
+</section>
+
+<!-- RANDOMIZER -->
+<section class="feature-section randomizer-section" id="randomizer-section">
+  <div class="randomizer-inner">
+    <div class="section-eyebrow">Style Tool</div>
+    <h2 class="section-title">Capsule Wardrobe <em>Randomizer</em></h2>
+    <p class="section-sub">Shuffle a new outfit formula. Lock pieces you love, swap the rest.</p>
+    <div style="display:flex;gap:10px;align-items:center;margin:1.5rem 0 .5rem;flex-wrap:wrap">
+      <select class="season-sel" id="season-sel" onchange="shuffleOutfit()"><option value="all">All Seasons</option><option value="spring">Spring</option><option value="summer">Summer</option><option value="autumn">Autumn</option><option value="winter">Winter</option></select>
+      <span class="harmony-chip" id="harmony-chip">✓ Colour Harmony</span>
     </div>
-    <div class="tip-card">
-      <div class="tip-num">04</div>
-      <div class="tip-title">Shoes make the outfit</div>
-      <p class="tip-desc">Even the simplest look transforms with the right shoe. Pay attention — your choice of footwear signals your level of care more than any other piece.</p>
+    <div class="randomizer-board" id="rand-board"></div>
+    <div class="rand-controls">
+      <button class="btn btn-dark" onclick="shuffleOutfit()">🎲 Shuffle Outfit</button>
+      <button class="btn btn-sm" style="background:var(--cream);border:1px solid var(--border);color:var(--ink)" onclick="saveOutfit()">♡ Save Look</button>
+      <button class="btn btn-sm" style="background:var(--cream);border:1px solid var(--border);color:var(--ink)" onclick="clearLocks()">🔓 Unlock All</button>
     </div>
-    <div class="tip-card">
-      <div class="tip-num">05</div>
-      <div class="tip-title">Colour harmony</div>
-      <p class="tip-desc">Limit your outfit to three colours maximum. A dominant, secondary, and accent. This formula creates effortless coordination without overthinking.</p>
-    </div>
-    <div class="tip-card">
-      <div class="tip-num">06</div>
-      <div class="tip-title">Confidence is the final accessory</div>
-      <p class="tip-desc">Wear every outfit with intent. Walk tall. The most stylish people aren't wearing the most expensive clothes — they're wearing whatever they choose with absolute conviction.</p>
+    <div id="saved-outfits-wrap" style="display:none;margin-top:2rem">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Saved Outfits (<span id="saved-count">0</span>)</div>
+      <div class="saved-outfits-wrap" id="saved-outfits-grid"></div>
     </div>
   </div>
 </section>
- 
-<!-- COLOUR PALETTE GUIDE -->
-<section
-  id="palette"
-  class="palette-section"
-  style="display:none;"
->
+
+<!-- CALENDAR -->
+<section class="feature-section calendar-section" id="calendar-section">
+  <div class="calendar-inner">
+    <div class="section-eyebrow">30-Day Challenge</div>
+    <h2 class="section-title">Closet <em>Cleanup</em> Calendar</h2>
+    <p class="section-sub">One small task a day transforms your entire wardrobe in a month.</p>
+    <div class="cal-progress-wrap" style="margin-top:2rem">
+      <div class="progress-ring-wrap">
+        <svg width="64" height="64" viewBox="0 0 64 64"><circle class="prog-track" cx="32" cy="32" r="26"/><circle class="prog-fill" id="cal-ring" cx="32" cy="32" r="26"/></svg>
+        <div class="prog-pct" id="cal-pct">0%</div>
+      </div>
+      <div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:3px" id="cal-title">Day 1 of 30</div>
+        <div style="font-size:12px;color:var(--muted)" id="cal-sub">Begin your closet transformation</div>
+        <button class="btn btn-sm" style="margin-top:8px;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px" onclick="resetCalendar()">Reset</button>
+      </div>
+    </div>
+    <div id="cal-tasks-wrap"></div>
+  </div>
+</section>
+
+<!-- STREAK -->
+<section class="feature-section streak-section" id="streak-section">
+  <div class="streak-inner">
+    <div class="section-eyebrow" style="color:var(--gold)">Daily Habit</div>
+    <h2 class="section-title" style="color:white;margin-bottom:3rem">Style <em style="color:var(--gold)">Streaks</em> & Badges</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+      <div style="text-align:center">
+        <div class="streak-big-num" id="streak-big">0</div>
+        <div class="streak-big-label">Day Streak 🔥</div>
+        <div class="streak-week" id="streak-week"></div>
+        <button class="btn btn-gold" onclick="checkIn()" id="checkin-btn" style="margin-top:1rem">Check In Today ✓</button>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem">Milestone Badges</div>
+        <div class="badges-grid" id="badges-grid"></div>
+        <div style="margin-top:1.5rem;font-size:12px;color:rgba(255,255,255,0.35);line-height:1.7">Visit daily to keep your streak. A 26-hour grace window prevents timezone issues. Reach milestones to unlock exclusive boards and bonus content.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK SCHEDULE -->
+<section class="feature-section schedule-section" id="schedule-section">
+  <div class="schedule-inner">
+    <div class="section-eyebrow">Content Calendar</div>
+    <h2 class="section-title">7-Day <em>Style Schedule</em></h2>
+    <p class="section-sub">A predictable weekly rhythm — click any day to see the full feature stack.</p>
+    <div style="margin-top:2.5rem">
+      <div class="week-strip" id="week-strip"></div>
+      <div id="day-detail-wrap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STYLE TIPS -->
+<section class="feature-section style-tips" id="tips-section">
+  <div class="section-eyebrow">Universal Rules</div>
+  <h2 class="section-title" style="color:var(--cream)">The golden rules<br>of <em style="color:var(--gold)">dressing well</em></h2>
+  <div class="tips-grid">
+    <div class="tip-card"><div class="tip-num">01</div><div class="tip-title">Fit is everything</div><p class="tip-desc">The most expensive outfit looks cheap if it doesn't fit. Invest in a tailor — even basic pieces look elevated when they're fitted to your body.</p></div>
+    <div class="tip-card"><div class="tip-num">02</div><div class="tip-title">Dress the occasion</div><p class="tip-desc">Always consider the venue, the host, and the guests. Being overdressed shows respect; being underdressed shows you didn't care enough to try.</p></div>
+    <div class="tip-card"><div class="tip-num">03</div><div class="tip-title">Quality over quantity</div><p class="tip-desc">Three exceptional pieces outperform thirty mediocre ones. Build a capsule wardrobe of well-made basics and rotate intentionally.</p></div>
+    <div class="tip-card"><div class="tip-num">04</div><div class="tip-title">Shoes make the outfit</div><p class="tip-desc">Even the simplest look transforms with the right shoe. Your footwear signals your level of care more than any other piece.</p></div>
+    <div class="tip-card"><div class="tip-num">05</div><div class="tip-title">Colour harmony</div><p class="tip-desc">Limit your outfit to three colours maximum — dominant, secondary, and accent. This formula creates effortless coordination without overthinking.</p></div>
+    <div class="tip-card"><div class="tip-num">06</div><div class="tip-title">Confidence is the final accessory</div><p class="tip-desc">Wear every outfit with intent. Walk tall. The most stylish people aren't wearing the most expensive clothes — they're wearing them with absolute conviction.</p></div>
+  </div>
+</section>
+
+<!-- PALETTE -->
+<section class="feature-section palette-section" id="palette-section">
   <div class="section-intro" style="padding-top:0">
     <div class="section-eyebrow">Colour guide</div>
     <h2 class="section-title">Colours that <em>always</em> work</h2>
-    <p class="section-sub">A reliable colour vocabulary that flatters and adapts across every occasion.</p>
+    <p class="section-sub">A reliable colour vocabulary — click any colour to search outfits.</p>
   </div>
   <div class="palette-grid">
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #1C1C1A;"></div>
-      <div class="palette-label">Charcoal Black</div>
-      <div class="palette-occasions">Office · Formal · Date</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #FAF7F2; border: 1px solid #E8E0D5;"></div>
-      <div class="palette-label">Ivory Cream</div>
-      <div class="palette-occasions">Wedding Guest · Casual</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #C9A96E;"></div>
-      <div class="palette-label">Warm Gold</div>
-      <div class="palette-occasions">Party · Wedding · Date</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #7B9E8A;"></div>
-      <div class="palette-label">Sage Green</div>
-      <div class="palette-occasions">Office · Casual · Wedding</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #8B7BA8;"></div>
-      <div class="palette-label">Dusty Lavender</div>
-      <div class="palette-occasions">Party · Wedding Guest</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #C4736A;"></div>
-      <div class="palette-label">Terracotta</div>
-      <div class="palette-occasions">Casual · Party · Date</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #2C4A6E;"></div>
-      <div class="palette-label">Navy Blue</div>
-      <div class="palette-occasions">Office · Formal · Casual</div>
-    </div>
-    <div class="palette-card">
-      <div class="color-swatch" style="background: #D4A5A5;"></div>
-      <div class="palette-label">Blush Rose</div>
-      <div class="palette-occasions">Wedding · Date · Casual</div>
-    </div>
+    <div class="palette-card" onclick="sg('Charcoal Black outfit fashion')"><div class="color-swatch" style="background:#1C1C1A"></div><div class="palette-label">Charcoal Black</div><div class="palette-occasions">Office · Formal · Date</div></div>
+    <div class="palette-card" onclick="sg('Ivory Cream outfit fashion')"><div class="color-swatch" style="background:#FAF7F2;border:1px solid #E8E0D5"></div><div class="palette-label">Ivory Cream</div><div class="palette-occasions">Wedding Guest · Casual</div></div>
+    <div class="palette-card" onclick="sg('Warm Gold outfit fashion')"><div class="color-swatch" style="background:#C9A96E"></div><div class="palette-label">Warm Gold</div><div class="palette-occasions">Party · Wedding · Date</div></div>
+    <div class="palette-card" onclick="sg('Sage Green outfit fashion')"><div class="color-swatch" style="background:#7B9E8A"></div><div class="palette-label">Sage Green</div><div class="palette-occasions">Office · Casual · Wedding</div></div>
+    <div class="palette-card" onclick="sg('Dusty Lavender outfit fashion')"><div class="color-swatch" style="background:#8B7BA8"></div><div class="palette-label">Dusty Lavender</div><div class="palette-occasions">Party · Wedding Guest</div></div>
+    <div class="palette-card" onclick="sg('Terracotta outfit fashion')"><div class="color-swatch" style="background:#C4736A"></div><div class="palette-label">Terracotta</div><div class="palette-occasions">Casual · Party · Date</div></div>
+    <div class="palette-card" onclick="sg('Navy Blue outfit fashion')"><div class="color-swatch" style="background:#2C4A6E"></div><div class="palette-label">Navy Blue</div><div class="palette-occasions">Office · Formal · Casual</div></div>
+    <div class="palette-card" onclick="sg('Blush Rose outfit fashion')"><div class="color-swatch" style="background:#D4A5A5"></div><div class="palette-label">Blush Rose</div><div class="palette-occasions">Wedding · Date · Casual</div></div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">DressCode</div>
- 
-  <p style="margin-top:0.5rem">Style is a way to say who you are without having to speak. — Rachel Zoe</p>
+  <p style="margin-top:.5rem">Style is a way to say who you are without having to speak. — Rachel Zoe</p>
 </footer>
- 
+
+<div class="toast-wrap"><div class="toast" id="toast"></div></div>
+<script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
+
 <script>
-  function showPanel(id) {
-    document.querySelectorAll('.occasion-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('panel-' + id).classList.add('active');
-    event.target.classList.add('active');
-  }
- 
-  // Intersection Observer for scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.1 });
- 
-  document.querySelectorAll('.tip-card, .palette-card, .pin-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(el);
-  });
- 
-  // Stagger palette cards
-  document.querySelectorAll('.palette-card').forEach((el, i) => {
-    el.style.transitionDelay = (i * 0.05) + 's';
-  });
-  document.querySelectorAll('.tip-card').forEach((el, i) => {
-    el.style.transitionDelay = (i * 0.08) + 's';
-  });
-    
-    
-    
+/* ── STATE ── */
+const S={streak:0,lastCheckin:null,boardUrls:{},savedOutfits:[],calTasks:{},pollVoted:null,pollVotedDate:null,pollVotes:{a:247,b:183},lockedSlots:{},currentOutfit:null};
+function loadS(){try{Object.assign(S,JSON.parse(localStorage.getItem('dc5')||'{}'))}catch(e){}}
+function saveS(){localStorage.setItem('dc5',JSON.stringify(S))}
+loadS();
 
-/* ─── WEATHER SYSTEM ─── */
+/* ── TOAST ── */
+function toast(m,d=2800){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),d)}
 
-const WD={
+/* ── SEARCH ── */
+function sg(q){window.open('https://www.google.com/search?q='+encodeURIComponent(q),'_blank')}
+
+/* ── DRAWER ── */
+function openDrawer(){document.getElementById('occasionDrawer').classList.add('active');document.getElementById('drawerOverlay').classList.add('active');syncDrawerStreak()}
+function closeDrawer(){document.getElementById('occasionDrawer').classList.remove('active');document.getElementById('drawerOverlay').classList.remove('active')}
+function syncDrawerStreak(){
+  document.getElementById('drawer-streak-num').textContent=S.streak||0;
+  document.getElementById('nav-streak-count').textContent=S.streak||0;
+  const today=new Date().toDateString();
+  const btn=document.getElementById('drawer-checkin-btn');
+  if(S.lastCheckin===today){btn.textContent='✓ Checked In Today';btn.disabled=true}
+  else{btn.textContent='Check In Today ✓';btn.disabled=false}
+}
+
+/* ── OPEN OCCASION ── */
+function openOccasion(panel,el){
+  // show occasions section, hide all others
+  hideAllFeatures();
+  document.getElementById('occasions-section').classList.add('visible');
+  // hide all panels, show chosen
+  document.querySelectorAll('.occasion-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+panel).classList.add('active');
+  // mark active link
+  document.querySelectorAll('#occasion-links .drawer-link').forEach(l=>l.classList.remove('active-link'));
+  if(el)el.classList.add('active-link');
+  closeDrawer();
+  setTimeout(()=>document.getElementById('occasions-section').scrollIntoView({behavior:'smooth'}),80);
+}
+
+/* ── OPEN FEATURE ── */
+function openFeature(sectionId,el){
+  hideAllFeatures();
+  const sec=document.getElementById(sectionId);
+  if(sec){sec.classList.add('visible');}
+  closeDrawer();
+  setTimeout(()=>sec&&sec.scrollIntoView({behavior:'smooth'}),80);
+  // init if needed
+  if(sectionId==='randomizer-section'){shuffleOutfit();renderSavedOutfits()}
+  if(sectionId==='calendar-section')updateCalendar();
+  if(sectionId==='streak-section'){renderBadges();renderStreakWeek()}
+  if(sectionId==='schedule-section')renderSchedule();
+  if(sectionId==='poll-section')initPoll();
+}
+
+function hideAllFeatures(){
+  document.querySelectorAll('.feature-section').forEach(s=>s.classList.remove('visible'));
+}
+
+/* ── WEATHER ── */
+/* ─── WEATHER SYSTEM UPDATED ─── */
+
+const WD = {
 
 hot:{
 cond:'Hot & Sunny',
-
-advice:
-'Light breathable fabrics essential — linen, cotton & silk. UV protection: looser silhouettes and lighter colours.',
-
+advice:'Light breathable fabrics essential — linen, cotton & silk. UV protection with airy layers.',
 tags:[
 'Breathable',
 'Light Colour',
 'SPF Ready'
 ],
-
 icon:'☀️',
-
 title:'Summer Essentials'
-
 },
 
 warm:{
-
 cond:'Warm & Bright',
-
-advice:
-'Perfect layering weather with soft fabrics.',
-
+advice:'Perfect weather for soft layers and transitional looks.',
 tags:[
 'Layer Ready',
-'Transitional',
-'Versatile'
+'Versatile',
+'Comfort'
 ],
-
 icon:'🌤️',
-
 title:'Balanced Layers'
-
 },
 
 mild:{
-
 cond:'Cool & Mild',
-
-advice:
-'Knitwear season with elegant layers.',
-
+advice:'Ideal for knitwear, jackets and autumn tones.',
 tags:[
 'Knit',
 'Autumn',
 'Layering'
 ],
-
 icon:'🍂',
-
 title:'Soft Transitional Style'
-
 },
 
 cold:{
-
 cond:'Cold & Crisp',
-
-advice:
-'Thermal layers and wool coats recommended.',
-
+advice:'Thermal layers and wool pieces recommended.',
 tags:[
 'Thermal',
-'Heavy Layer',
-'Winter'
-
+'Winter',
+'Heavy Layer'
 ],
-
 icon:'❄️',
-
 title:'Winter Chic'
-
 },
 
 rainy:{
-
 cond:'Rainy & Grey',
-
-advice:
-'Trench coats and waterproof layers work best.',
-
+advice:'Trench coats and waterproof fabrics work best.',
 tags:[
-'Waterproof',
 'Rain Ready',
+'Waterproof',
 'Trench'
-
 ],
-
 icon:'🌧️',
-
 title:'Rain Ready Fashion'
-
 }
 
 };
 
 
 
-function initDailyFit(){
+async function initDailyFit(){
 
 document.getElementById(
 "weatherTemp"
@@ -1668,18 +960,20 @@ document.getElementById(
 document.getElementById(
 "weatherCondition"
 ).innerHTML=
-"Detecting weather...";
+"Detecting location...";
 
 document.getElementById(
 "fitDesc"
 ).innerHTML=
-"Fetching weather data...";
+"Fetching weather...";
 
 if(
 !navigator.geolocation
 ){
 
-simulateWeather();
+showError(
+"Geolocation unsupported"
+);
 
 return;
 
@@ -1689,25 +983,40 @@ navigator.geolocation.getCurrentPosition(
 
 (position)=>{
 
-fetchWeather(
+console.log(
+"LAT:",
+position.coords.latitude
+);
 
-position.coords.latitude,
-
+console.log(
+"LNG:",
 position.coords.longitude
+);
 
+fetchWeather(
+position.coords.latitude,
+position.coords.longitude
 );
 
 },
 
-()=>{
+(error)=>{
 
-simulateWeather();
+console.log(error);
+
+showError(
+error.message
+);
 
 },
 
 {
 
-timeout:6000
+enableHighAccuracy:true,
+
+timeout:15000,
+
+maximumAge:0
 
 }
 
@@ -1718,70 +1027,47 @@ timeout:6000
 
 
 function fetchWeather(
-
 lat,
-
 lon
-
 ){
 
 fetch(
-
 `https://wttr.in/${lat},${lon}?format=j1`
-
 )
 
 .then(
-
 r=>r.json()
-
 )
 
 .then(
-
-d=>{
+data=>{
 
 const temp=
-
 parseInt(
-
-d.current_condition[0].temp_C
-
+data.current_condition[0]
+.temp_C
 );
 
 const desc=
-
-d.current_condition[0]
-
+data.current_condition[0]
 .weatherDesc[0]
-
 .value;
 
 const area=
-
-d.nearest_area[0]
-
+data.nearest_area[0]
 .areaName[0]
-
 .value;
 
 const rain=
-
-desc
-
-.toLowerCase()
-
+desc.toLowerCase()
 .includes("rain")
 
 ||
 
-desc
-
-.toLowerCase()
-
+desc.toLowerCase()
 .includes("drizzle");
 
-const w=
+const style=
 
 rain
 
@@ -1818,70 +1104,25 @@ WD.mild
 WD.cold;
 
 renderWeather(
-
 temp,
-
 desc,
-
 area,
-
-w
-
+style
 );
 
-}
-
-)
+})
 
 .catch(
 
-()=>{
+(err)=>{
 
-simulateWeather();
+console.log(err);
 
-}
-
+showError(
+"Weather fetch failed"
 );
 
 }
-
-
-
-function simulateWeather(){
-
-const keys=
-
-Object.keys(WD);
-
-const w=
-
-WD[
-
-keys[
-
-Math.floor(
-
-Math.random()
-
-*
-
-keys.length
-
-)
-
-]
-
-];
-
-renderWeather(
-
-24,
-
-w.cond,
-
-"Your City",
-
-w
 
 );
 
@@ -1890,96 +1131,57 @@ w
 
 
 function renderWeather(
-
 temp,
-
 cond,
-
 loc,
-
-w
-
+style
 ){
 
 document.getElementById(
-
 "weatherIcon"
-
 ).innerHTML=
-
-w.icon;
-
-
+style.icon;
 
 document.getElementById(
-
 "weatherTemp"
-
 ).innerHTML=
-
 temp+"°C";
 
-
-
 document.getElementById(
-
 "weatherLocation"
-
 ).innerHTML=
-
 loc;
 
-
-
 document.getElementById(
-
 "weatherCondition"
-
 ).innerHTML=
-
 cond;
 
-
-
 document.getElementById(
-
 "fitTitle"
-
 ).innerHTML=
-
-w.title;
-
-
+style.title;
 
 document.getElementById(
-
 "fitDesc"
-
 ).innerHTML=
-
-w.advice;
-
-
+style.advice;
 
 document.getElementById(
-
 "fitTags"
-
 ).innerHTML=
 
-w.tags.map(
+style.tags.map(
 
-t=>`
+tag=>`
 
 <div
-
 class="fit-tag"
+onclick="
+searchGoogle('${tag}')
+">
 
-onclick="searchGoogle('${t}')"
-
->
-
-${t}
+${tag}
 
 </div>
 
@@ -1991,173 +1193,322 @@ ${t}
 
 
 
-function searchGoogle(item){
+function showError(
+msg
+){
+
+document.getElementById(
+"weatherTemp"
+).innerHTML=
+"--";
+
+document.getElementById(
+"weatherLocation"
+).innerHTML=
+"Location unavailable";
+
+document.getElementById(
+"weatherCondition"
+).innerHTML=
+msg;
+
+document.getElementById(
+"fitTitle"
+).innerHTML=
+"Location Error";
+
+document.getElementById(
+"fitDesc"
+).innerHTML=
+"Unable to detect weather.";
+
+}
+
+
+
+function searchGoogle(
+item
+){
+
+const url=
+
+`https://www.google.com/search?q=${encodeURIComponent(item)}`;
 
 window.open(
-
-`https://www.google.com/search?q=${encodeURIComponent(item)}`,
-
+url,
 "_blank"
-
 );
 
 }
 
 
 
-initDailyFit();
 
+/* ── POLL ── */
+const POLLS=[
+  {q:'Trend or Trash? Crochet co-ords as office wear',a:'Trend ✓',b:'Trash ✗'},
+  {q:'Would you wear a floor-length coat to brunch?',a:'Absolutely',b:'Too much'},
+  {q:'Ballet flats vs chunky loafers — who wins?',a:'Ballet flat',b:'Chunky loafer'},
+  {q:'Is quiet luxury replacing maximalism?',a:'Yes, forever',b:'Maximalism lives'},
+  {q:'Are statement shoulders back?',a:'Bring them on',b:'Please no'},
+  {q:'Denim-on-denim: forward or faux pas?',a:'Forward ✓',b:'Faux pas ✗'},
+  {q:'Head-to-toe neutrals: boring or brilliant?',a:'Brilliant',b:'Boring'},
+];
 
-function searchGoogle(item){
-
-  const query =
-    encodeURIComponent(item);
-
-  const url =
-    `https://www.google.com/search?q=${query}`;
-
-  window.open(url, "_blank");
-
+function initPoll(){
+  const p=POLLS[new Date().getDay()%POLLS.length];
+  document.getElementById('poll-question').textContent=p.q;
+  ['a','b'].forEach(x=>{document.getElementById('poll-'+x+'-label').textContent=p[x];document.getElementById('res-'+x+'-label').textContent=p[x]});
+  if(S.pollVotedDate===new Date().toDateString())showPollResults(S.pollVoted);
 }
 
-
-function openDrawer(){
-
-  const drawer =
-    document.getElementById("occasionDrawer");
-
-  const overlay =
-    document.getElementById("drawerOverlay");
-
-  drawer.classList.add("active");
-
-  overlay.classList.add("active");
-
+function castVote(choice){
+  if(S.pollVotedDate===new Date().toDateString()){toast('Already voted today! Come back tomorrow.');return}
+  S.pollVotes[choice]+=1;S.pollVoted=choice;S.pollVotedDate=new Date().toDateString();
+  saveS();showPollResults(choice);toast('Vote cast! '+(choice==='a'?'✓':'✗'));
 }
 
-function closeDrawer(){
-
-  const drawer =
-    document.getElementById("occasionDrawer");
-
-  const overlay =
-    document.getElementById("drawerOverlay");
-
-  drawer.classList.remove("active");
-
-  overlay.classList.remove("active");
-
+function showPollResults(choice){
+  const total=S.pollVotes.a+S.pollVotes.b;
+  const pA=Math.round((S.pollVotes.a/total)*100),pB=100-pA;
+  document.getElementById('poll-a').className='poll-option '+(choice==='a'?'voted-this':'voted-other');
+  document.getElementById('poll-b').className='poll-option '+(choice==='b'?'voted-this':'voted-other');
+  document.getElementById('poll-results').style.display='block';
+  document.getElementById('poll-voted-msg').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('bar-a').style.width=pA+'%';
+    document.getElementById('bar-b').style.width=pB+'%';
+    document.getElementById('pct-a').textContent=pA+'%';
+    document.getElementById('pct-b').textContent=pB+'%';
+    document.getElementById('poll-total').textContent=total.toLocaleString()+' votes today';
+  },50);
 }
 
-function openOccasion(panel){
+/* ── RANDOMIZER ── */
+const ITEMS={
+  top:{all:[{e:'🌸',n:'Floral Blouse'},{e:'🧶',n:'Chunky Knit'},{e:'👚',n:'Classic Tee'},{e:'🎀',n:'Bow Blouse'},{e:'🍂',n:'Turtleneck'},{e:'👗',n:'Smock Top'}],spring:[{e:'🌸',n:'Floral Blouse'},{e:'👕',n:'Linen Tee'},{e:'🎀',n:'Bow Top'},{e:'🌿',n:'Smock Top'}],summer:[{e:'🌸',n:'Cami'},{e:'☀️',n:'Off-shoulder'},{e:'🌊',n:'Halter Top'},{e:'🎀',n:'Crop Top'}],autumn:[{e:'🍂',n:'Polo Neck'},{e:'🧶',n:'Chunky Knit'},{e:'🍁',n:'Turtleneck'},{e:'🌰',n:'Roll-neck'}],winter:[{e:'❄️',n:'Cashmere Roll-neck'},{e:'⛄',n:'Heavy Knit'},{e:'🌨️',n:'Wool Polo'},{e:'🧣',n:'Mock-neck'}]},
+  bottom:{all:[{e:'👖',n:'Straight Jeans'},{e:'🌸',n:'Midi Skirt'},{e:'✂️',n:'Wide-Leg'},{e:'🩳',n:'Tailored Shorts'},{e:'🍂',n:'Corduroy'},{e:'🎀',n:'Pleated Mini'}],spring:[{e:'🌸',n:'Floral Midi'},{e:'👖',n:'Straight Jeans'},{e:'🎀',n:'Pleated Mini'},{e:'✂️',n:'Wide-Leg'}],summer:[{e:'🌿',n:'Linen Shorts'},{e:'🩳',n:'Mini Skirt'},{e:'☀️',n:'Flowy Maxi'},{e:'🌸',n:'Wrap Skirt'}],autumn:[{e:'🍂',n:'Corduroy'},{e:'🧥',n:'Straight Jeans'},{e:'🍁',n:'Midi Skirt'},{e:'🌰',n:'Wide-Leg'}],winter:[{e:'❄️',n:'Ponte Trousers'},{e:'⛄',n:'Wool Trousers'},{e:'🌨️',n:'Flared Trousers'},{e:'🧣',n:'Thermal Leggings'}]},
+  layer:{all:[{e:'🧥',n:'Classic Blazer'},{e:'🍂',n:'Trench Coat'},{e:'🌸',n:'Linen Jacket'},{e:'❄️',n:'Wool Coat'},{e:'✂️',n:'Leather Jacket'},{e:'🎀',n:'Cardigan'}],spring:[{e:'🌸',n:'Lightweight Blazer'},{e:'🎀',n:'Trench Coat'},{e:'✂️',n:'Linen Jacket'},{e:'👒',n:'Cardigan'}],summer:[{e:'☀️',n:'Open Linen Shirt'},{e:'🌿',n:'Kimono Jacket'},{e:'🌸',n:'Sheer Shirt'},{e:'🧁',n:'Crochet Cardi'}],autumn:[{e:'🍂',n:'Wool Coat'},{e:'🧥',n:'Leather Jacket'},{e:'🍁',n:'Overshirt'},{e:'🌰',n:'Blazer'}],winter:[{e:'❄️',n:'Heavy Wool Coat'},{e:'⛄',n:'Puffer'},{e:'🧣',n:'Quilted Jacket'},{e:'🌨️',n:'Long Overcoat'}]},
+  shoe:{all:[{e:'👠',n:'Heeled Mule'},{e:'🩰',n:'Ballet Flat'},{e:'🥾',n:'Ankle Boot'},{e:'✨',n:'White Sneaker'},{e:'👞',n:'Loafer'},{e:'👡',n:'Strappy Sandal'}],spring:[{e:'🌸',n:'Ballet Flat'},{e:'🩰',n:'Kitten Heel'},{e:'✨',n:'White Sneaker'},{e:'👞',n:'Loafer'}],summer:[{e:'🌿',n:'Strappy Sandal'},{e:'👡',n:'Platform Sandal'},{e:'☀️',n:'Espadrille'},{e:'🩴',n:'Slide'}],autumn:[{e:'🍂',n:'Ankle Boot'},{e:'🥾',n:'Chelsea Boot'},{e:'🍁',n:'Chunky Loafer'},{e:'🌰',n:'Mary Jane'}],winter:[{e:'❄️',n:'Knee-High Boot'},{e:'⛄',n:'Biker Boot'},{e:'🧣',n:'Sock Boot'},{e:'🌨️',n:'Platform Boot'}]},
+  accessory:{all:[{e:'👜',n:'Mini Bag'},{e:'🧣',n:'Silk Scarf'},{e:'🕶️',n:'Sunglasses'},{e:'💍',n:'Statement Ring'},{e:'🌸',n:'Pearl Earrings'},{e:'🧤',n:'Belt Bag'}],spring:[{e:'👜',n:'Mini Crossbody'},{e:'🌸',n:'Pearl Earrings'},{e:'🕶️',n:'Cat-Eye Shades'},{e:'🎀',n:'Silk Scarf'}],summer:[{e:'🧢',n:'Bucket Hat'},{e:'🌿',n:'Raffia Bag'},{e:'🌸',n:'Hoop Earrings'},{e:'🕶️',n:'Oval Shades'}],autumn:[{e:'🍂',n:'Belt Bag'},{e:'🧣',n:'Cashmere Scarf'},{e:'🌰',n:'Statement Ring'},{e:'💼',n:'Structured Bag'}],winter:[{e:'🧤',n:'Leather Gloves'},{e:'❄️',n:'Wool Beanie'},{e:'🧣',n:'Oversized Scarf'},{e:'💍',n:'Layered Necklaces'}]},
+};
+const SLOTS=['top','bottom','layer','shoe','accessory'];
+const SLOT_LABELS={top:'Top',bottom:'Bottom',layer:'Layer',shoe:'Shoes',accessory:'Accessory'};
 
-  // SHOW OCCASIONS SECTION
-
-  hideAllSections();
-
-document
-  .getElementById("occasions")
-  .style.display = "block";
-
-  // HIDE ALL PANELS
-
-  document
-    .querySelectorAll(".occasion-panel")
-    .forEach(el => {
-      el.classList.remove("active");
-    });
-
-  // SHOW SELECTED PANEL
-
-  const selectedPanel =
-    document.getElementById("panel-" + panel);
-
-  if(selectedPanel){
-
-    selectedPanel.classList.add("active");
-
-  }
-
-  // CLOSE DRAWER
-
-  closeDrawer();
-
-  // SCROLL
-
-  document
-    .getElementById("occasions")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-function searchGoogle(item){
-
-  const query =
-    encodeURIComponent(item);
-
-  const url =
-    `https://www.google.com/search?q=${query}`;
-
-  window.open(url, "_blank");
-
-}
-
-function hideAllSections(){
-
-  document.getElementById(
-    "occasions"
-  ).style.display = "none";
-
-  document.getElementById(
-    "tips"
-  ).style.display = "none";
-
-  document.getElementById(
-    "palette"
-  ).style.display = "none";
-
-}
-
-function openTips(){
-
-  hideAllSections();
-
-  document.getElementById(
-    "tips"
-  ).style.display = "block";
-
-  closeDrawer();
-
-  document.getElementById(
-    "tips"
-  ).scrollIntoView({
-    behavior:"smooth"
+function shuffleOutfit(){
+  const season=document.getElementById('season-sel')?.value||'all';
+  const outfit={};
+  SLOTS.forEach(slot=>{
+    if(S.lockedSlots[slot]&&S.currentOutfit?.[slot]){outfit[slot]=S.currentOutfit[slot]}
+    else{const pool=ITEMS[slot][season]||ITEMS[slot]['all'];outfit[slot]=pool[Math.floor(Math.random()*pool.length)]}
   });
-
+  S.currentOutfit=outfit;
+  renderRandBoard(outfit);
+  const chip=document.getElementById('harmony-chip');
+  if(chip){chip.classList.add('show');setTimeout(()=>chip.classList.remove('show'),2200)}
 }
 
-function openPalette(){
+function renderRandBoard(outfit){
+  const board=document.getElementById('rand-board');if(!board)return;
+  board.innerHTML=SLOTS.map(slot=>{
+    const item=outfit[slot],locked=!!S.lockedSlots[slot];
+    return`<div class="rand-slot ${locked?'locked':''}" id="rslot-${slot}"><button class="lock-btn" onclick="toggleLock('${slot}')">${locked?'🔒':'🔓'}</button><div class="rand-emoji">${item.e}</div><div class="rand-cat">${SLOT_LABELS[slot]}</div><div class="rand-item">${item.n}</div></div>`;
+  }).join('');
+}
 
-  hideAllSections();
+function toggleLock(slot){
+  S.lockedSlots[slot]=!S.lockedSlots[slot];
+  const el=document.getElementById('rslot-'+slot);
+  if(el){el.classList.toggle('locked',!!S.lockedSlots[slot]);el.querySelector('.lock-btn').textContent=S.lockedSlots[slot]?'🔒':'🔓'}
+  toast(S.lockedSlots[slot]?slot+' locked 🔒':slot+' unlocked 🔓');
+}
 
-  document.getElementById(
-    "palette"
-  ).style.display = "block";
+function clearLocks(){
+  S.lockedSlots={};
+  document.querySelectorAll('.rand-slot').forEach(el=>{el.classList.remove('locked');const b=el.querySelector('.lock-btn');if(b)b.textContent='🔓'});
+  toast('All slots unlocked');
+}
 
-  closeDrawer();
+function saveOutfit(){
+  if(!S.currentOutfit)return;
+  S.savedOutfits.unshift({...S.currentOutfit,id:Date.now()});
+  saveS();renderSavedOutfits();toast('Look saved! ♡');
+}
 
-  document.getElementById(
-    "palette"
-  ).scrollIntoView({
-    behavior:"smooth"
+function renderSavedOutfits(){
+  const grid=document.getElementById('saved-outfits-grid');
+  const wrap=document.getElementById('saved-outfits-wrap');
+  const cnt=document.getElementById('saved-count');
+  if(!grid)return;
+  if(cnt)cnt.textContent=S.savedOutfits.length;
+  if(wrap)wrap.style.display=S.savedOutfits.length?'block':'none';
+  grid.innerHTML=S.savedOutfits.map((o,i)=>`<div class="saved-outfit-row"><div style="display:flex;gap:8px;flex:1">${SLOTS.map(s=>`<span style="font-size:20px" title="${o[s]?.n||''}">${o[s]?.e||'?'}</span>`).join('')}</div><div style="font-size:11px;color:var(--muted);flex:2">${SLOTS.map(s=>o[s]?.n||'').join(' · ')}</div><button onclick="S.savedOutfits.splice(${i},1);saveS();renderSavedOutfits()" style="background:none;border:none;cursor:pointer;font-size:13px;color:var(--muted)">✕</button></div>`).join('');
+}
+
+/* ── CALENDAR ── */
+const CAL=[
+  {w:'Week 1 — Sort & Audit',tasks:[{d:1,e:'🧺',t:'Empty your wardrobe completely onto the bed'},{d:2,e:'👗',t:'Sort into 3 piles: Keep, Maybe, Donate'},{d:3,e:'📏',t:'Try on every "Maybe" item — ruthless edit'},{d:4,e:'🎨',t:'Group Keeps by colour — spot the gaps'},{d:5,e:'📸',t:'Photograph every item you\'re keeping'},{d:6,e:'🔍',t:'Audit shoes — anything unpolished or unwearable?'},{d:7,e:'📦',t:'Pack the Donate pile — bag it, don\'t revisit'}]},
+  {w:'Week 2 — Clean & Repair',tasks:[{d:8,e:'🧺',t:'Wash all delicates and woolens correctly'},{d:9,e:'✂️',t:'Check for loose buttons — sew on 3 today'},{d:10,e:'♻️',t:'Take Donate bag to charity shop today'},{d:11,e:'🧴',t:'Condition your leather bags and shoes'},{d:12,e:'👔',t:'Steam or press 5 items that need refreshing'},{d:13,e:'🪡',t:'Mend one item you\'ve been avoiding'},{d:14,e:'✨',t:'Clean jewellery — silver polish and microfibre'}]},
+  {w:'Week 3 — Style & Restyle',tasks:[{d:15,e:'🔀',t:'Create 3 new outfits from pieces you never pair'},{d:16,e:'📷',t:'Style and photograph your top 5 outfits'},{d:17,e:'🎨',t:'Buy one versatile item to fill a wardrobe gap'},{d:18,e:'🧥',t:'Style your coat 3 completely different ways'},{d:19,e:'👠',t:'Plan one full week of outfits in advance'},{d:20,e:'📋',t:'Identify most-worn colours — make a palette'},{d:21,e:'✂️',t:'Curate a "Sell" pile — Vinted or Depop time'}]},
+  {w:'Week 4 — Organise & Celebrate',tasks:[{d:22,e:'📱',t:'List 5 items on Vinted or Depop'},{d:23,e:'📦',t:'Store seasonal items in vacuum bags or boxes'},{d:24,e:'🗂️',t:'Organise by occasion: Work / Casual / Formal / Party'},{d:25,e:'🪝',t:'Add velvet hangers — stops items slipping'},{d:26,e:'🌸',t:'Add cedar blocks or lavender sachets to drawers'},{d:27,e:'📸',t:'Take a final "after" photo of your wardrobe'},{d:28,e:'🎉',t:'Celebrate! Plan your one reward purchase'},{d:29,e:'📋',t:'Set a 3-month check-in reminder'},{d:30,e:'✨',t:'Share your transformation — you\'ve earned it!'}]},
+];
+
+function updateCalendar(){
+  const done=Object.values(S.calTasks).filter(Boolean).length,total=30;
+  const pct=Math.round((done/total)*100);
+  const circ=2*Math.PI*26;
+  const ring=document.getElementById('cal-ring');
+  if(ring){ring.style.strokeDasharray=circ;ring.style.strokeDashoffset=circ-(pct/100)*circ}
+  const pEl=document.getElementById('cal-pct');if(pEl)pEl.textContent=pct+'%';
+  const tEl=document.getElementById('cal-title');if(tEl)tEl.textContent=done>=total?'🎉 Complete!':`Day ${Math.min(done+1,total)} of 30`;
+  const sEl=document.getElementById('cal-sub');if(sEl)sEl.textContent=done>=total?'Your closet is transformed!':`${total-done} tasks remaining`;
+  const wrap=document.getElementById('cal-tasks-wrap');if(!wrap)return;
+  let html='';
+  CAL.forEach(week=>{
+    const pending=week.tasks.filter(t=>!S.calTasks['d'+t.d]).slice(0,3);
+    if(!pending.length)return;
+    html+=`<div class="cal-week-label">${week.w}</div>`;
+    pending.forEach(task=>{
+      const isDone=!!S.calTasks['d'+task.d];
+      html+=`<div class="cal-task ${isDone?'done':''}" onclick="toggleCalTask('d${task.d}',this)"><div class="cal-check"><span class="cal-check-mark">✓</span></div><div class="cal-day-num">Day ${task.d}</div><div style="font-size:15px;flex-shrink:0">${task.e}</div><div class="cal-task-text">${task.t}</div></div>`;
+    });
   });
-
+  if(!html)html=`<div style="text-align:center;padding:2rem;font-size:13px;color:var(--gold);font-weight:700">🎉 All 30 days complete!</div>`;
+  wrap.innerHTML=html;
 }
 
+function toggleCalTask(key,el){
+  S.calTasks[key]=!S.calTasks[key];
+  el.classList.toggle('done',!!S.calTasks[key]);
+  saveS();updateCalendar();
+  if(S.calTasks[key])toast('Task complete! ✓');
+}
+
+function resetCalendar(){if(!confirm('Reset all calendar progress?'))return;S.calTasks={};saveS();updateCalendar();toast('Calendar reset.')}
+
+/* ── STREAK ── */
+const BADGES=[{days:3,emoji:'👀',name:'Trend Watcher'},{days:7,emoji:'💡',name:'Style Insider'},{days:14,emoji:'📌',name:'Board Curator'},{days:30,emoji:'🗝️',name:'Closet Curator'},{days:60,emoji:'⭐',name:'Style Maven'},{days:100,emoji:'👑',name:'Fashion Oracle'}];
+
+function checkIn(){
+  const today=new Date().toDateString();
+  if(S.lastCheckin===today){toast('Already checked in today! See you tomorrow 👋');return}
+  const yesterday=new Date(Date.now()-86400000*1.08).toDateString();
+  S.streak=(S.lastCheckin===yesterday||!S.lastCheckin)?(S.streak||0)+1:1;
+  S.lastCheckin=today;saveS();syncDrawerStreak();
+  renderBadges();renderStreakWeek();
+  const earned=BADGES.find(b=>b.days===S.streak);
+  if(earned)toast('🏆 Badge unlocked: '+earned.name+' '+earned.emoji,4000);
+  else toast('🔥 Day '+S.streak+' streak! Keep going.');
+  const btn=document.getElementById('checkin-btn');
+  if(btn){btn.textContent='✓ Checked In';btn.disabled=true;btn.style.opacity='.6'}
+}
+
+function renderBadges(){
+  const el=document.getElementById('badges-grid');if(!el)return;
+  el.innerHTML=BADGES.map(b=>`<div class="badge-item ${S.streak>=b.days?'earned':''} ${S.streak<b.days?'locked':''}"><div class="badge-emoji">${b.emoji}</div><div class="badge-name">${b.name}</div><div class="badge-days">${b.days}d</div></div>`).join('');
+  const big=document.getElementById('streak-big');if(big)big.textContent=S.streak||0;
+  const btn=document.getElementById('checkin-btn');
+  if(btn&&S.lastCheckin===new Date().toDateString()){btn.textContent='✓ Checked In';btn.disabled=true;btn.style.opacity='.6'}
+}
+
+function renderStreakWeek(){
+  const el=document.getElementById('streak-week');if(!el)return;
+  const days=['M','T','W','T','F','S','S'];
+  const todayIdx=new Date().getDay()===0?6:new Date().getDay()-1;
+  el.innerHTML=days.map((d,i)=>{
+    const isToday=i===todayIdx;
+    const done=isToday?S.lastCheckin===new Date().toDateString():(S.streak>0&&i<todayIdx);
+    return`<div class="streak-day ${done?'done':''} ${isToday?'today':''}">${d}</div>`;
+  }).join('');
+}
+
+/* ── WEEK SCHEDULE ── */
+const WEEK=[
+  {name:'Mon',emoji:'🖤',theme:'Monochrome Monday',desc:'Zero coordination stress — just one colour, done well. Build confidence for the week ahead.',features:['Poll: mono look A vs B','Randomizer: mono filter','Style Tips: colour harmony','Pinterest: Office board'],drop:'Featured black or white essential.',streak:'Check-in earns Monday Minimalist bonus.'},
+  {name:'Tue',emoji:'💰',theme:'Thrifted Tuesday',desc:'Sustainability angle builds community values. FOMO on rare finds drives early visits.',features:['Randomizer: budget mode','Poll: Thrift vs New','Style Tips: quality over quantity','Pinterest: Casual board'],drop:'Vintage or charity shop find.',streak:'Double points for Tuesday check-in.'},
+  {name:'Wed',emoji:'🌍',theme:'Work-Wear Wednesday',desc:'Peak professional mindset day. Office content converts well.',features:['Daily Fit: office weather','Randomizer: office occasion','Poll: power suit A vs B','Pinterest: Office board'],drop:'Work bag or quality shoe.',streak:'Office board unlocked for 7+ streaks.'},
+  {name:'Thu',emoji:'🧵',theme:'Texture Thursday',desc:'Educational content builds trust. Texture is sensory and drives engagement.',features:['Style Tips: fabric education','Poll: velvet vs leather','Randomizer: texture lock','Calendar: wardrobe task'],drop:'Statement texture piece.',streak:'Earns Texture Expert at 4 consecutive Thursdays.'},
+  {name:'Fri',emoji:'✨',theme:'Fit Friday',desc:'Highest engagement day. Party picks drive weekend social content.',features:['Poll: Trend or Trash?','Randomizer: party mode','Calendar: weekend task','Pinterest: Party board'],drop:'Sequin or satin statement piece.',streak:'Friday check-in counts double.'},
+  {name:'Sat',emoji:'🌿',theme:'Slow Saturdays',desc:'Lower-pressure content for relaxed browsing. Closet cleanup tasks align with Saturdays.',features:['Calendar: weekend task','Randomizer: casual mode','Poll: loungewear vs casual','Style Tips: basics done well'],drop:'Linen set or comfort shoe.',streak:'Saturday task extends grace period.'},
+  {name:'Sun',emoji:'📅',theme:'Style Reset Sunday',desc:'Highest-intent planning day. Outfit planning creates the reason to return Monday.',features:['Randomizer: plan 5 days','Style Tips: week planning','Poll: next week theme','Pinterest: all boards review'],drop:'Sneak peek of Monday drop.',streak:'Sunday session earns +1 streak bonus.'},
+];
+let selDay=new Date().getDay()===0?6:new Date().getDay()-1;
+
+function renderSchedule(){
+  const strip=document.getElementById('week-strip');if(!strip)return;
+  const todayIdx=new Date().getDay()===0?6:new Date().getDay()-1;
+  strip.innerHTML=WEEK.map((d,i)=>`<div class="week-day ${i===todayIdx?'today':''} ${i===selDay?'sel':''}" onclick="selectDay(${i})"><div class="week-day-name">${d.name}</div><div class="week-day-emoji">${d.emoji}</div><div class="week-day-theme">${d.theme}</div></div>`).join('');
+  renderDayDetail(selDay);
+}
+
+function selectDay(i){
+  selDay=i;
+  document.querySelectorAll('.week-day').forEach((d,j)=>d.classList.toggle('sel',j===i));
+  renderDayDetail(i);
+}
+
+function renderDayDetail(i){
+  const d=WEEK[i];
+  const wrap=document.getElementById('day-detail-wrap');if(!wrap)return;
+  wrap.innerHTML=`<div class="day-detail-box"><div class="day-detail-head"><div class="day-detail-title">${d.emoji} ${d.theme}</div><span style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)">${d.name}</span></div><div class="day-detail-body"><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1rem">${d.desc}</p><div style="font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem">Active features</div><div class="day-features">${d.features.map(f=>`<span class="day-feat-tag">${f}</span>`).join('')}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1rem"><div><div class="day-info-label">Drop Theme</div><div class="day-info-box">${d.drop}</div></div><div><div class="day-info-label">Streak Mechanic</div><div class="day-info-box">${d.streak}</div></div></div></div></div>`;
+}
+
+/* ── PINTEREST BOARD ── */
+let pinJsReady=false;
+window.addEventListener('load',()=>setTimeout(()=>{pinJsReady=true},2000));
+
+function tryBuildPin(){
+  let tries=0;
+  const iv=setInterval(()=>{tries++;if(window.PinUtils){try{window.PinUtils.build()}catch(e){}clearInterval(iv)}if(tries>20)clearInterval(iv)},350);
+}
+
+function togglePin(cat){
+  const bar=document.getElementById('pin-setup-'+cat);
+  const isOpen=bar.classList.contains('open');
+  bar.classList.toggle('open');
+  if(!isOpen){const inp=document.getElementById('pin-input-'+cat);if(S.boardUrls[cat])inp.value=S.boardUrls[cat];setTimeout(()=>inp.focus(),60)}
+}
+
+function applyBoard(cat){
+  let url=document.getElementById('pin-input-'+cat).value.trim();
+  if(!url){toast('Please enter a Pinterest board URL');return}
+  if(!url.startsWith('http'))url='https://'+url;
+  if(!url.endsWith('/'))url+='/';
+  S.boardUrls[cat]=url;saveS();
+  document.getElementById('pin-setup-'+cat).classList.remove('open');
+  document.getElementById('pin-url-'+cat).textContent=url;
+  document.getElementById('pin-anchor-'+cat).href=url;
+  document.getElementById('pin-embed-'+cat).classList.add('active');
+  tryBuildPin();
+  toast('📌 Board connected! Loading your pins…');
+}
+
+function restoreBoards(){
+  Object.keys(S.boardUrls).forEach(cat=>{
+    const url=S.boardUrls[cat];
+    const u=document.getElementById('pin-url-'+cat);
+    const a=document.getElementById('pin-anchor-'+cat);
+    const e=document.getElementById('pin-embed-'+cat);
+    if(u)u.textContent=url;
+    if(a)a.href=url;
+    if(e)e.classList.add('active');
+  });
+}
+
+/* ── INIT ── */
 initDailyFit();
-    
+restoreBoards();
+syncDrawerStreak();
+
+/* ── SCROLL ANIMATIONS ── */
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)'}});
+},{threshold:0.08});
+document.querySelectorAll('.tip-card,.palette-card,.pin-card').forEach((el,i)=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';
+  el.style.transition=`opacity 0.5s ease ${i*0.04}s,transform 0.5s ease ${i*0.04}s`;
+  observer.observe(el);
+});
 </script>
 </body>
 </html>
